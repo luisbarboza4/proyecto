@@ -29,6 +29,7 @@
                 <div class="form-horizontal">
                     <div class="panel panel-default">
                         <div class="panel-heading"><center><strong><?php echo $_GET['type']=='size' ? "Tamaño" : "Soporte"; ?></strong></center></div>
+                        <input type="hidden" id="pag" value="<?php echo $_GET['type'];?>">
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-xs-3 text-right">
@@ -77,6 +78,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
+                <input type="hidden" id="id_modal" name="id_modal" value="0">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><?php echo $_GET['type']=='size' ? "Tamaño" : "Soporte";  ?></h4>
             </div>
@@ -103,68 +105,6 @@
      </div>
  </div>
 </div>
-<script type="text/javascript">
-    function clearModal(){
-		$("#name_modal").val("");
-		$("#size_modal").val("");
-	}
-	$("[data-dismiss]").click(clearModal);
-	function deletebyid(id){
-	    $('html').loading();
-		$.ajax({
-	        url: "ajax/savetypesize.php?type=del&pag=<?php echo $_GET['type']?>",
-	        type: "POST",
-	        data: {
-	            id: id
-	        },
-	        success:function (data) {
-	        	$('html').loading("stop");
-	        	alert("<?php echo $_GET['type']=='size' ? 'Tamaño' : 'Soporte';  ?> Borrado Exitosamente");
-	        }
-    	});
-	}
-	$("#save-modal").click(function(){
-	    var name = $("#name_modal").val();
-	    var size = $("#size_modal").val();
-	    $('#myModal').modal('hide');
-		$('html').loading();
-		$.ajax({
-	        url: "ajax/savetypesize.php?type=post&pag=<?php echo $_GET['type']?>",
-	        type: "POST",
-	        data: {
-	            name: name,
-	            size: size
-	        },
-	        success:function (data) {
-	        	$('html').loading("stop");
-	        	clearModal();
-	        	alert("<?php echo $_GET['type']=='size' ? 'Tamaño' : 'Soporte';  ?> Guardado Exitosamente");
-	        	search();
-	        }
-    	});
-	})
-	function search(){
-	    $('html').loading();
-		$.ajax({
-	        url: "ajax/savetypesize.php?type=get&pag=<?php echo $_GET['type']?>",
-	        type: "POST",
-	        success:function (data) {
-	        	$('html').loading("stop");
-	        	var result = JSON.parse(data);
-	        	$("#lista tbody").empty()
-	        	for(var i in result) {
-	        	  $("#lista tbody").append('<tr><td>'+result[i].name+'</td><td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</button></td></tr>');
-	        	    $("#lista tbody tr:last td:last").click(function(){
-            			if(confirm("Desea eliminar este <?php echo $_GET['type']=='size' ? 'Tamaño' : 'Soporte';  ?>")){
-            				$(this).parent().remove();
-            				deletebyid(result[i].id)
-            			}
-            		})
-	        	}
-	        }
-    	});
-	}
-	search()
-</script>
+<script type="text/javascript" src="js/configuration.js"></script>
 </body>
 </html>
