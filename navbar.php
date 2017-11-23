@@ -11,7 +11,10 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav navbar-right">
-	      <li <?php echo $pagina == "index.php" ? "class='active'" : "";?> ><a href="index.php">Inicio</a></li>
+	      <li><a href="index.php">Inicio</a></li>
+	      <?php
+	      	if ($user){
+	      	?>
 	      <li class='dropdown' style='float: left'>
 	      	  <a class='dropdown-toggle' data-toggle='dropdown' role='button'>Configuración<span class='caret'></span></a>
 		      <ul class='dropdown-menu' style='background-color: #e7e7e7;min-width: 80px'>
@@ -20,9 +23,9 @@
 			      <li><a href='configuration.php'>Soporte</a></li>
 		      </ul>
 	      </li>
-	      	<?php 
-	      	if (isset($_SESSION['active'])){
-	      		echo "<li><li class='dropdown' style='float: left'><a style='font-size: initial' class='dropdown-toggle' data-toggle='dropdown' role='button'><span class='glyphicon glyphicon-user'></span>".$_SESSION['usuario']."<span class='caret'></span></a><ul class='dropdown-menu' style='background-color: #e7e7e7;min-width: 80px'><li><a href='salir.php'>Salir</a></li></ul></li></li>";
+	    	<?php
+	      		echo "<li><li class='dropdown' style='float: left'><a style='font-size: initial' class='dropdown-toggle' data-toggle='dropdown' role='button'><span class='glyphicon glyphicon-user'></span>".$user['nombre']."<span class='caret'></span></a><ul class='dropdown-menu' style='background-color: #e7e7e7;min-width: 80px'><li><a href='salir.php'>Salir</a></li></ul></li></li>";
+	      	
 	      	}
 	      	?>
 	    </ul>

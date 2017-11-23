@@ -1,3 +1,6 @@
+<?php 
+	include_once("config.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,5 +87,12 @@
      </div>
  </div>
 </div>
+<script type="text/javascript">
+    function clearModal(){
+		$("#name_modal").val("");
+		$("#size_modal").val("");
+	}
+	$("[data-dismiss]").click(clearModal);
+</script>
 </body>
 </html>

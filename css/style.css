@@ -20,9 +20,10 @@ footer {
 input[type='file']{
 	display: none;
 }
-img{
+img:not(.ignore){
 	border-radius: 50%;
 	display: block;
+	cursor: pointer
 }
 .row-main{
 	height: 87.5vh;
@@ -38,6 +39,7 @@ img{
 	position:absolute;
 	bottom:10%;
 	left: 5%;
+	cursor: pointer
 }
 .formini *:not(img){
 	width: 40%;
@@ -48,4 +50,10 @@ img{
 #lista{
 	height: 70vh;
 	overflow-y: auto;
+}
+#add-costo,.big-image{
+	cursor: pointer;
+}
+th,td{
+	width: 25%;
 }

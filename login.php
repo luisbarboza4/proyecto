@@ -1,6 +1,8 @@
-    
+<?php include 'messages.php'; ?>
+
 <form action="control.php" method="post" name="login_form" class="">
 <div class="col-md-offset-2 col-md-8 col-md-offset-2 col-xs-8">
+  <?php if($errormsg)showMessage($errormsg,'error'); ?>
     <div class="row">
       <div class="form-group">
         <label for="usuario">Usuario</label>
@@ -12,8 +14,8 @@
       </div>
       <?php 
       if(isset($_GET['error'])){
-        $msj = "Usuario y/o contraseña inválidos";
-        echo msj($msj,'danger');
+        //$msj = "Usuario y/o contraseña inválidos";
+        //echo msj($msj,'danger');
       }
       ?>
       <div class='form-group'>
@@ -22,4 +24,8 @@
     </div>
   </div>
 </form>
-
+<script type="text/javascript">
+  $('form').submit(function(){
+    $('body').loading();
+  });
+</script>

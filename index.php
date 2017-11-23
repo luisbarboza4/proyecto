@@ -1,3 +1,7 @@
+<?php 
+$index=true;
+include_once("config.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +20,7 @@
 <body>
 <?php 
 	include_once("navbar.php");
-	if(isset($_SESSION['active'])){
+	if(!$user){
 		include_once("login.php");
 	}else{
 ?>
@@ -40,7 +44,7 @@
 				<textarea name="about_user" id="about_user" rows="5"></textarea>
 			</div>
 			<div class="form-group" style="text-align: center;">
-				<input class="btn btn-primary" type="button" name="save" id="save" value="Guardar">
+				<input class="btn btn-primary" type="submit" name="save" id="save" value="Guardar">
 			</div>
 		</div>
 	</div>
@@ -64,18 +68,35 @@ include("footer.php");
 	       reader.readAsDataURL($(this).get(0).files[0]);
 		}
 	})
-	$("#save").click(function(){
+	$("#form").submit(function(e){
+		e.preventDefault();
+		var data = new FormData(this);
 		$('html').loading();
-		$j.ajax({
-	        url: "ajax/save.php",
+		$.ajax({
+	        url: "ajax/saveconf.php?type=post",
 	        type: "POST",
-	        data: $('#form').serialize(),
+	        data: data,
+	        cache: false,
+            contentType: false,
+            processData: false,
 	        success:function (data) {
 	        	$('html').loading("stop");
 	        	alert("Configuracion Guardada Exitosamente");
 	        }
     	});
 	})
+	$('html').loading();
+		$.ajax({
+	        url: "ajax/saveconf.php?type=get",
+	        type: "POST",
+	        success:function (data) {
+	        	$('html').loading("stop");
+	        	var result = JSON.parse(data);
+	        	$("#name_user").val(result.name_user.value);
+	        	$("#about_user").val(result.about_user.value);
+	        	$("#image-show").attr("src",result.image_user.value);
+	        }
+    	});
 </script>
 </body>
 </html>
