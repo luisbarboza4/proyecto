@@ -57,3 +57,6 @@ img:not(.ignore){
 th,td{
 	width: 25%;
 }
+th{
+	text-align: center;
+}
