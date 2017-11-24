@@ -1,6 +1,4 @@
 $('html').loading();
-
-
 $(document).ready(function(){
     let size_items = [];
     let suporte_items  = [];
@@ -203,6 +201,7 @@ $(document).ready(function(){
 		viewtable();
 	}
 	$("[data-dismiss]").click(clearModal);
+	$("[data-toggle]").click(clearModal);
 	function viewtable(){
 		if($("#table-cost tbody tr").length > 0){
 			$("#table-cost").show();
@@ -236,6 +235,7 @@ $(document).ready(function(){
     	return valid;
 	}
 	function showModal(result) {
+		clearModal();
 	    $("#id_imagen").val(result.id);
 	    $("#name_img").val(result.name);
 	    $("#public_img").prop("checked",result.mostrar == 1 ? true : false);

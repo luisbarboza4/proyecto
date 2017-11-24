@@ -6,7 +6,9 @@ $(document).ready(function(){
     	$("#id_modal").val("0");
     }
     $("[data-dismiss]").click(clearModal);
+    $("[data-toggle]").click(clearModal);
     function showModal(result) {
+        clearModal();
         $("#name_modal").val(result.name);
     	$("#size_modal").val(result.resolucion);
     	$("#id_modal").val(result.id);
