@@ -10,9 +10,11 @@ include_once("config.php");
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/sweetalert.js"></script>
 	<script src="js/loading.js"></script>
 	<meta charset="utf-8">
 	<title>Configuracion</title>

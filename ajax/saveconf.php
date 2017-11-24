@@ -9,9 +9,9 @@
         foreach ($_POST as $key => $value) {
             $db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>$key,":value"=>$value));
         }
-        if(isset($_FILES)){
+        if(isset($_FILES) && $_FILES['image_user']['tmp_name']){
             move_uploaded_file($_FILES['image_user']['tmp_name'], "../img/profile/image_user") or die($_FILES["image_user"]["error"]);
-            $db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>"image_user",":value"=>"../img/profile/image_user"));
+            $db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>"image_user",":value"=>"img/profile/image_user"));
         }
     }
 ?>

@@ -26,8 +26,10 @@
     case "del":
         if($_GET["pag"]=="size"){
             $db->delete("DELETE FROM size WHERE id=:id",array(":id"=>$_POST["id"]));
+            $db->delete("DELETE FROM img_sop_size WHERE id_size=:id",array(":id"=>$_POST["id"]));
         }else{
             $db->delete("DELETE FROM soporte WHERE id=:id",array(":id"=>$_POST["id"]));
+            $db->delete("DELETE FROM img_sop_size WHERE id_soporte=:id",array(":id"=>$_POST["id"]));
         }
         break;
     }

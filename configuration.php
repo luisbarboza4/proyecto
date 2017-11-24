@@ -9,20 +9,18 @@
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="css/loading.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/sweetalert.js"></script>
     <script src="js/loading.js"></script>
     <meta charset="utf-8">
     <title>Configuracion <?php echo $_GET['type']=='size' ? "- Tamaño" : "- Soporte"; ?></title>
 </head>
 <body>
     <?php 
-    include_once("navbar.php");
-    if(isset($_SESSION['active'])){
-        header('Location: index.php');
-    }else{
-        ?>
+    include_once("navbar.php");     ?>
         <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
         <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
@@ -65,7 +63,6 @@
           </div>
       </div>
       <?php 
-  }
   include("footer.php");
   ?>
   <div class="row flotante" data-toggle="modal" data-target="#myModal">
@@ -99,8 +96,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-             <button type="button" class="btn btn-remove" id="save-modal">Aceptar</button>
-             <button type="button" class="btn btn-remove" data-dismiss="modal">Cerrar</button>
+             <button type="button" class="btn btn-primary" id="save-modal">Aceptar</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
          </div>
      </div>
  </div>

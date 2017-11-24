@@ -83,34 +83,8 @@ CREATE TABLE `config` (
 
 LOCK TABLES `config` WRITE;
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
-INSERT INTO `config` VALUES ('about_user','Barney es un dinosaurio que vive en nuestra mente y cuando se hace grande es realmente sorprendente'),('image_user','../img/profile/image_user'),('name_user','Barney'),('pepe','el grangero');
+INSERT INTO `config` VALUES ('about_user','Dicen que de todos los animales de la creacion, el hombre, es el unico que beber si tener sed, come sin tener hambre y hablar sin tener nada bueno que decir...'),('image_user','img/profile/image_user'),('name_user','Luis'),('pepe','el grangero');
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `imagen_tamaño`
---
-
-DROP TABLE IF EXISTS `imagen_tamaño`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `imagen_tamaño` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_imagen` int(11) NOT NULL,
-  `id_tamaño` int(11) NOT NULL,
-  `costo` int(11) NOT NULL,
-  `id_soporte` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `imagen_tamaño`
---
-
-LOCK TABLES `imagen_tamaño` WRITE;
-/*!40000 ALTER TABLE `imagen_tamaño` DISABLE KEYS */;
-/*!40000 ALTER TABLE `imagen_tamaño` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -122,11 +96,11 @@ DROP TABLE IF EXISTS `imagenes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `imagenes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ruta` text NOT NULL,
+  `ruta` text,
   `name` varchar(100) NOT NULL,
   `mostrar` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +109,36 @@ CREATE TABLE `imagenes` (
 
 LOCK TABLES `imagenes` WRITE;
 /*!40000 ALTER TABLE `imagenes` DISABLE KEYS */;
+INSERT INTO `imagenes` VALUES (16,'upload/5a176a01e5792','Luis',1);
 /*!40000 ALTER TABLE `imagenes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `img_sop_size`
+--
+
+DROP TABLE IF EXISTS `img_sop_size`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `img_sop_size` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_imagen` int(11) NOT NULL,
+  `id_size` int(11) NOT NULL,
+  `costo` int(11) NOT NULL,
+  `id_soporte` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `complejo` (`id_imagen`,`id_soporte`,`id_size`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `img_sop_size`
+--
+
+LOCK TABLES `img_sop_size` WRITE;
+/*!40000 ALTER TABLE `img_sop_size` DISABLE KEYS */;
+INSERT INTO `img_sop_size` VALUES (15,16,1,2600,4);
+/*!40000 ALTER TABLE `img_sop_size` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -150,7 +153,7 @@ CREATE TABLE `size` (
   `name` varchar(30) NOT NULL,
   `resolucion` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +177,7 @@ CREATE TABLE `soporte` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-23 15:11:06
+-- Dump completed on 2017-11-24  1:55:31

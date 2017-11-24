@@ -5,8 +5,8 @@ if(!isset($_SESSION)){
 include_once("class.db.php");
 include_once("functions.php");
 
-$userdb = "abakus";
-$passdb = "abakus";
+$userdb = "cuatro";
+$passdb = "";
 $hostdb = "localhost";
 $namedb = "c9";
 
