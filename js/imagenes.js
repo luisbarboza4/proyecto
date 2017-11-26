@@ -1,7 +1,7 @@
 $('html').loading();
 $(document).ready(function(){
-    let size_items = [];
-    let suporte_items  = [];
+    var suporte_items  = [];
+    var size_items = [];
     $('#dialog_image').submit(function(e){
     	if(!validateimage()){
     		return false;
@@ -12,7 +12,6 @@ $(document).ready(function(){
         var data = new FormData(this);
         $('#myModal').modal('hide');
         clearModal();
-        $('html').loading();
 	    $.ajax({
         url: "ajax/saveimages.php?type="+type,
         type: "POST",
@@ -32,14 +31,16 @@ $(document).ready(function(){
            url:"ajax/saveimages.php?type=get",
             success:function (data) {
                 $('html').loading("stop");
-                let imagenes = JSON.parse(data);
+                var imagenes = JSON.parse(data);
                 $(".images-list").empty();
                 $.each(imagenes,function(i,e){
-                    let div = $("<div>")
+                    var div = $("<div>")
                                 .addClass("col-xs-offset-4 col-xs-4");
-                    let imgdiv = $("<div>").addClass("img");
+                    var h3 = $("<h3>").text(e.name);
+                    div.append(h3);
+                    var imgdiv = $("<div>").addClass("img");
                     div.append(imgdiv);
-                    let img = $("<img>")
+                    var img = $("<img>")
                                 .attr("src",e.ruta)
                                 .data("item",e)
                                 .addClass("img-responsive ignore big-image")
@@ -47,7 +48,7 @@ $(document).ready(function(){
     				                showModal($(this).data('item'));
                                 });
                     imgdiv.append(img);
-                    let buttonEdit = $('<button>')
+                    var buttonEdit = $('<button>')
                                     .addClass('btn btn-primary')
                                     .data("item",e)
                                     .append('<span class="glyphicon glyphicon-edit"></span>Editar')
@@ -55,7 +56,7 @@ $(document).ready(function(){
     				                    showModal($(this).data('item'));
                                     });
                     imgdiv.append(buttonEdit);
-                    let buttonDel = $('<button>')
+                    var buttonDel = $('<button>')
                                     .addClass('btn btn-danger')
                                     .attr("id",e.id)
                                     .append('<span class="glyphicon glyphicon-trash"></span>Eliminar')
@@ -118,14 +119,18 @@ $(document).ready(function(){
 	$("#add-costo").click(function() {
 	    add_costo();
 	})
-	function add_costo(costo="",id_size="",id_soporte="",id_costo='0'){
-		let tr = $('<tr>');
-		let td = $('<td>');
+	function add_costo(costo,id_size,id_soporte,id_costo){
+		var costo = costo==undefined ? "" : costo;
+		var id_size = id_size==undefined ? "" : id_size;
+		var id_soporte = id_soporte==undefined ? "" : id_soporte;
+		var id_costo = id_costo==undefined ? "0" : id_costo;
+		var tr = $('<tr>');
+		var td = $('<td>');
 		td.append('<input type="text" id="costo" name="costo[]" class="form-control input-xs" value="'+costo+'">');
 		td.append('<input type="hidden" id="id_costo" name="id_costo[]" class="form-control input-xs" value="'+id_costo+'">');
 		tr.append(td);
 		td = $('<td>');
-		let select = $('<select>')
+		var select = $('<select>')
 		                .attr("name","size_img[]")
 		                .addClass("form-control")
 		                .addClass("input-xs");
@@ -234,6 +239,17 @@ $(document).ready(function(){
     	}
     	return valid;
 	}
+	$("#buscar").keyup(filter);
+    function filter(){
+        filter = $(this).val().toUpperCase();
+        $('.images-list div:not(.img)').each(function(i,e){
+          if ($(e).find("h3").html().toUpperCase().indexOf(filter) > -1) {
+            $(e).show();
+          } else {
+            $(e).hide();
+          }
+        })
+    }
 	function showModal(result) {
 		clearModal();
 	    $("#id_imagen").val(result.id);

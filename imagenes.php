@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -23,8 +24,19 @@
 	<?php 
 		include_once("navbar.php");
 	?>
+<div class="row">
+	<div class="form-group">
+	    <div class="col-xs-offset-4 col-xs-1">
+	        <label for="buscar" class="control-label">Buscar:</label>
+	    </div>
+	    <div class="col-xs-3">
+	        <input  type="text" maxlength="30" name="buscar" id="buscar" class="form-control" placeholder="busqueda por nombre"/>
+	    </div>
+	</div>
+</div>
 <div class="row row-main images-list">
 </div>
+
 <?php 
 	include("footer.php");
 ?>

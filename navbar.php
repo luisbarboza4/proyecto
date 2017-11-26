@@ -13,7 +13,7 @@
 	    <ul class="nav navbar-nav navbar-right">
 	      <li><a href="index.php">Inicio</a></li>
 	      <?php
-	      	if ($user){
+	      	if (@$user){
 	      	?>
 	      <li class='dropdown' style='float: left'>
 	      	  <a class='dropdown-toggle' data-toggle='dropdown' role='button'>Configuración<span class='caret'></span></a>

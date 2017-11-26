@@ -1,7 +1,7 @@
 <?php 
   $index = true;
   include_once("../config.php");
-  switch ($_GET['type']) {
+  switch (@$_GET['type']) {
     case "get":
         $config = $db->fetch_all("SELECT * FROM config",false,"name");
         die(json_encode($config));

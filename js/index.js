@@ -37,9 +37,15 @@ $(document).ready(function(){
 	    type: "POST",
 	    success:function (data) {
 	    	var result = JSON.parse(data);
-	    	$("#name_user").val(result.name_user.value);
-	    	$("#about_user").val(result.about_user.value);
-	    	$("#image-show").attr("src",result.image_user.value);
+	    	if(result.name_user){
+	    		$("#name_user").val(result.name_user.value);
+	    	}
+	    	if(result.about_user){
+	    		$("#about_user").val(result.about_user.value);
+	    	}
+	    	if(result.image_user){
+	    		$("#image-show").attr("src",result.image_user.value);
+	    	}
 	    	$('html').loading("stop");
 	    }
 	});

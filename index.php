@@ -11,6 +11,7 @@ include_once("config.php");
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -22,7 +23,7 @@ include_once("config.php");
 <body>
 <?php 
 	include_once("navbar.php");
-	if(!$user){
+	if(!@$user){
 		include_once("login.php");
 	}else{
 ?>

@@ -26,7 +26,7 @@ img:not(.ignore){
 	cursor: pointer
 }
 .row-main{
-	height: 87.5vh;
+	height: 86vh;
 	overflow-y: auto;
 }
 .navbar{
@@ -64,5 +64,8 @@ th,td{
 	width: 25%;
 }
 th{
+	text-align: center;
+}
+.images-list div{
 	text-align: center;
 }

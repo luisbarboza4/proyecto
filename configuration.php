@@ -10,23 +10,25 @@
     <link rel="stylesheet" type="text/css" href="css/loading.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/sweetalert.js"></script>
     <script src="js/loading.js"></script>
     <meta charset="utf-8">
-    <title>Configuracion <?php echo $_GET['type']=='size' ? "- Tamaño" : "- Soporte"; ?></title>
+    <title>Configuracion <?php echo @$_GET['type']=='size' ? "- Tamaño" : "- Soporte"; ?></title>
 </head>
 <body>
     <?php 
-    include_once("navbar.php");     ?>
+        include_once("navbar.php");     
+    ?>
         <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
         <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
                 <div class="form-horizontal">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><center><strong><?php echo $_GET['type']=='size' ? "Tamaño" : "Soporte"; ?></strong></center></div>
+                        <div class="panel-heading"><center><strong><?php echo @$_GET['type']=='size' ? "Tamaño" : "Soporte"; ?></strong></center></div>
                         <input type="hidden" id="pag" value="<?php echo $_GET['type'];?>">
                         <div class="panel-body">
                             <div class="form-group">
@@ -44,7 +46,7 @@
                                     <thead>
                                     <tr>
                                         <th>
-                                            <?php echo $_GET['type']=='size' ? "Tamaño" : "Soporte"; ?>
+                                            <?php echo @$_GET['type']=='size' ? "Tamaño" : "Soporte"; ?>
                                         </th>
                                         <th>
                                             Opciones
@@ -77,14 +79,14 @@
             <div class="modal-header">
                 <input type="hidden" id="id_modal" name="id_modal" value="0">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><?php echo $_GET['type']=='size' ? "Tamaño" : "Soporte";  ?></h4>
+                <h4 class="modal-title"><?php echo @$_GET['type']=='size' ? "Tamaño" : "Soporte";  ?></h4>
             </div>
             <div class="row">
                 <div class="col-xs-offset-2 col-xs-8">
                     <label for="name_modal">Nombre:</label>
                     <input type="text" id="name_modal" name="name_modal" class="form-control input-xs">
                     <?php 
-                        if($_GET['type']=='size'){
+                        if(@$_GET['type']=='size'){
                     ?>
                     <hr>
                     <label for="size_modal">Resolucion:</label>
