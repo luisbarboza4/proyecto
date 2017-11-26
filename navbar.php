@@ -21,6 +21,7 @@
 			      <li><a href='imagenes.php'>Imagenes</a></li>
 			      <li><a href='configuration.php?type=size'>Tamaño</a></li>
 			      <li><a href='configuration.php'>Soporte</a></li>
+			      <li><a href='pedidos.php'>Pedidos</a></li>
 		      </ul>
 	      </li>
 	    	<?php

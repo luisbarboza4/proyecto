@@ -126,7 +126,7 @@ $(document).ready(function(){
 		var id_costo = id_costo==undefined ? "0" : id_costo;
 		var tr = $('<tr>');
 		var td = $('<td>');
-		td.append('<input type="text" id="costo" name="costo[]" class="form-control input-xs" value="'+costo+'">');
+		td.append('<input type="number" id="costo" name="costo[]" class="form-control input-xs" value="'+costo+'">');
 		td.append('<input type="hidden" id="id_costo" name="id_costo[]" class="form-control input-xs" value="'+id_costo+'">');
 		tr.append(td);
 		td = $('<td>');
