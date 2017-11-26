@@ -1,4 +1,4 @@
-<?php
+<?php 
 $index=true;
 include_once("config.php");
 ?>
@@ -9,7 +9,7 @@ include_once("config.php");
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -21,7 +21,7 @@ include_once("config.php");
 	<title>Configuracion</title>
 </head>
 <body>
-<?php
+<?php 
 	include_once("navbar.php");
 	if(!@$user){
 		include_once("login.php");
@@ -52,7 +52,7 @@ include_once("config.php");
 		</div>
 	</div>
 </form>
-<?php
+<?php 
 }
 include("footer.php");
 ?>

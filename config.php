@@ -24,5 +24,5 @@ if(isset($username) && isset($password)){
 }
 
 if(!@$user && !@$index){
-    redirect("index.php");
+    redirect("admin.php");
 }

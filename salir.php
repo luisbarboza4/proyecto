@@ -8,4 +8,4 @@ unset($_SESSION['username']);
 unset($_SESSION['password']);
 session_destroy();
 
-redirect("index.php");
+redirect("admin.php");

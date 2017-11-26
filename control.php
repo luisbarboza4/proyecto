@@ -13,5 +13,5 @@
 		errorMessage('Usuario y/o contraseña inválidos');
 		
 	}
-	redirect("index.php");
+	redirect("admin.php");
  ?>
