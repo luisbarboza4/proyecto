@@ -1,6 +1,10 @@
 <div class="modal fade" id="ilusModal" role="dialog">
     <div class="modal-dialog modal-lg">
-
+<!--
+0: el usuario le dio comprar esa mielda y la coña es medio tapada y lo tienen pendiente porque no lo ha hecho
+1: milagrosamente logro hacer esa mielda (pa ser ilustradora tapada le echo bola)
+2: el usuario monto la imagenes en el carrito pero esta esperando que el dolar baje y los precios bajen para darle a comprar
+  -->
       <!-- Modal content-->
       <div class="modal-content" id="modalstyle">
         <button type="button" class="close" data-dismiss="modal">&times;</button>

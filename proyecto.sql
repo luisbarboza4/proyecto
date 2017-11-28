@@ -18,6 +18,8 @@
 --
 -- Table structure for table `articulos_carrito`
 --
+CREATE DATABASE IF NOT EXISTS proyecto;
+use proyecto;
 
 DROP TABLE IF EXISTS `articulos_carrito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
