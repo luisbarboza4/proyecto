@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include_once("config.php");
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="css/loading.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/styles2.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -20,8 +20,8 @@
     <title>Configuracion - Pedidos</title>
 </head>
 <body>
-    <?php 
-        include_once("navbar.php");     
+    <?php
+        include_once("navbar.php");
     ?>
         <div class="row">
         <div class="col-xs-offset-2 col-xs-8">
@@ -41,7 +41,7 @@
                                     <label for="status_select" class="control-label">Status:</label>
                                 </div>
                                 <div class="col-xs-3">
-                                    <select id="status_select" class="form-control input-xs">
+                                    <select id="status_select" class="form-control input-xs supp">
                                         <option value="">Todos</option>
                                         <option value="0">Pendiente</option>
                                         <option value="1">Listo</option>
@@ -75,7 +75,7 @@
               </div>
           </div>
       </div>
-      <?php 
+      <?php
   include("footer.php");
   ?>
   <div id="myModal" class="modal fade" role="dialog">

@@ -9,7 +9,7 @@
   	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
   	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
   	<link rel="stylesheet" type="text/css" href="css/loading.css">
-  	<link rel="stylesheet" type="text/css" href="css/styles.css">
+  	<link rel="stylesheet" type="text/css" href="css/styles2.css">
   	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
   	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed" rel="stylesheet">
@@ -19,7 +19,7 @@
   	<script type="text/javascript" src="js/sweetalert.js"></script>
   	<script src="js/loading.js"></script>
   	<meta charset="utf-8">
-  	<title>TSUKUYOMI STORE | CATALOGO</title>
+  	<title>TSUKUYOMI STORE | CARRITO</title>
   </head>
   <body class="catalogo">
 

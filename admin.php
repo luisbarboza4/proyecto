@@ -9,7 +9,7 @@ include_once("config.php");
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/styles2.css">
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -20,8 +20,8 @@ include_once("config.php");
 	<meta charset="utf-8">
 	<title>Configuracion</title>
 </head>
-<body>
-<?php 
+<body class="admin">
+<?php
 	include_once("navbar.php");
 	if(!@$user){
 		include_once("login.php");
@@ -37,22 +37,22 @@ include_once("config.php");
 					</label>
 			</div>
 			<div class="form-group formini">
-				<label for="name_user">Nombre a mostrar del usuario:
+				<label for="name_user">Nombre:
 				</label>
 				<input type="text" name="name_user" id="name_user">
 			</div>
 			<div class="form-group formini">
-				<label for="about_user" style="vertical-align: top;">Acerca del usuario:
+				<label for="about_user" style="vertical-align: top;">Acerca del artista:
 				</label>
 				<textarea name="about_user" id="about_user" rows="5"></textarea>
 			</div>
 			<div class="form-group" style="text-align: center;">
-				<input class="btn btn-primary" type="submit" name="save" id="save" value="Guardar">
+				<input class="btn elim" type="submit" name="save" id="save" value="Guardar">
 			</div>
 		</div>
 	</div>
 </form>
-<?php 
+<?php
 }
 include("footer.php");
 ?>

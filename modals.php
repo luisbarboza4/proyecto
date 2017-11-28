@@ -60,8 +60,8 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <div class="modal-body">
             <div class="col-md-12 col-sm-12 text-center login-form">
-              <h3 class="logh">Bienvenido!</h3>
-              <h4 class="logh">Es necesario conectarse para poder realizar pedidos.</h4>
+              <h3 class="logh2">Bienvenido!</h3>
+              <h4 class="logh2">Es necesario conectarse para poder realizar pedidos.</h4>
               <br>
               <form class="login" action="catalogo.php" method="post">
 
@@ -74,9 +74,9 @@
                 <input type="password" name="pass" value="" placeholder="password">
                 <br><br>
                 <input type="submit" name="submit" value="Entrar" class="btn elim">
-                <a href="registro.php"><button type="button" name="button" class="btn elim">Registrarse</button></a> 
+                <a href="registro.php"><button type="button" name="button" class="btn elim">Registrarse</button></a>
                 <br><br>
-                <a href="#" class="recover">Recuperar Contraseña</a>
+                <a href="recuperar.php" class="recover">Recuperar Contraseña</a>
               </form>
             </div>
           </div>

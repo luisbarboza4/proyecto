@@ -15,7 +15,7 @@
   	<script type="text/javascript" src="js/sweetalert.js"></script>
   	<script src="js/loading.js"></script>
   	<meta charset="utf-8">
-  	<title>TSUKUYOMI STORE | REGISTRO</title>
+  	<title>TSUKUYOMI STORE | RESTABLECER CONTRASEÑA</title>
   </head>
   <body class="catalogo">
 
@@ -27,25 +27,22 @@
 
     <div class="row">
       <div id="reg-form" class="col-sm-12 text-center">
-        <h4 class="logh">Registro</h4>
+        <h4 class="logh">Por favor, escriba su E-mail y usuario para recuperar su contraseña</h4>
         <br>
         <form class="login" action="catalogo.php" method="post">
-          <label for="username"> Nombre </label>
-          <br>
-          <input type="text" name="nombre" value="" placeholder="Nombre">
-          <br>
-          <label for="username"> Apellido </label>
-          <br>
-          <input type="text" name="apellido" value="" placeholder="Apellido">
-          <br>
           <label for="username"> E-mail </label>
           <br>
           <input type="email" name="email" value="" placeholder="ejemplo@ejemplo.com">
           <br>
           <label for="username"> Usuario </label>
           <br>
-          <input type="text" name="username" value="" placeholder="usuario">
-          <br>
+          <input type="text" name="username" value="" placeholder="username">
+          <br><br>
+          <button type="button" name="button" class="btn elim">Recuperar</button>
+          <br><br>
+
+          <!-- Despues de verificar que el email y el usuario existen.
+
           <label for="pass"> Contraseña </label>
           <br>
           <input type="password" name="pass" value="" placeholder="contraseña">
@@ -54,7 +51,10 @@
           <br>
           <input type="password" name="pass" value="" placeholder="repita la contraseña">
           <br><br>
-          <button type="button" name="button" class="btn elim">Registrarse</button>
+          <button type="button" name="button" class="btn elim">Restaurar Contraseña</button>
+
+          -->
+
         </form>
       </div>
     </div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="css/loading.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/styles2.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -19,9 +19,9 @@
     <meta charset="utf-8">
     <title>Configuracion <?php echo @$_GET['type']=='size' ? "- Tamaño" : "- Soporte"; ?></title>
 </head>
-<body>
-    <?php 
-        include_once("navbar.php");     
+<body class="configuracion">
+    <?php
+        include_once("navbar.php");
     ?>
         <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
         <div class="row">
@@ -54,7 +54,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -64,7 +64,7 @@
               </div>
           </div>
       </div>
-      <?php 
+      <?php
   include("footer.php");
   ?>
   <div class="row flotante" data-toggle="modal" data-target="#myModal">
@@ -85,13 +85,13 @@
                 <div class="col-xs-offset-2 col-xs-8">
                     <label for="name_modal">Nombre:</label>
                     <input type="text" id="name_modal" name="name_modal" class="form-control input-xs">
-                    <?php 
+                    <?php
                         if(@$_GET['type']=='size'){
                     ?>
                     <hr>
                     <label for="size_modal">Resolucion:</label>
                     <input type="text" id="size_modal" name="size_modal" class="form-control input-xs">
-                    <?php 
+                    <?php
                         }
                     ?>
                     <br>

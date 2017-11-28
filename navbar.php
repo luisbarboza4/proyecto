@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navi">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="index.php">WebSite</a>
+	      <a class="navbar-brand" href="index.php">HOME</a>
 	      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 	        <span class="sr-only">Toggle navigation</span>
 	        <span class="icon-bar"></span>
@@ -26,7 +26,7 @@
 	      </li>
 	    	<?php
 	      		echo "<li><li class='dropdown' style='float: left'><a style='font-size: initial' class='dropdown-toggle' data-toggle='dropdown' role='button'><span class='glyphicon glyphicon-user'></span>".$user['nombre']."<span class='caret'></span></a><ul class='dropdown-menu' style='background-color: #e7e7e7;min-width: 80px'><li><a href='salir.php'>Salir</a></li></ul></li></li>";
-	      	
+
 	      	}
 	      	?>
 	    </ul>

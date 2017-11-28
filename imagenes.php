@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/loading.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/styles2.css">
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
@@ -20,24 +20,26 @@
 	<meta charset="utf-8">
 	<title>Configuracion - Imagenes</title>
 </head>
-<body>
-	<?php 
+<body class="imagenes">
+	<?php
 		include_once("navbar.php");
 	?>
 <div class="row">
+	<br><br>
 	<div class="form-group">
 	    <div class="col-xs-offset-4 col-xs-1">
 	        <label for="buscar" class="control-label">Buscar:</label>
 	    </div>
 	    <div class="col-xs-3">
-	        <input  type="text" maxlength="30" name="buscar" id="buscar" class="form-control" placeholder="busqueda por nombre"/>
+	        <input  type="text" maxlength="30" name="buscar" id="buscar" class="form-control" placeholder="nombre de ilustracion"/>
 	    </div>
 	</div>
+	<br><br>
 </div>
 <div class="row row-main images-list">
 </div>
 
-<?php 
+<?php
 	include("footer.php");
 ?>
 <div id="myModal" class="modal fade" role="dialog">
@@ -113,8 +115,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				 <button type="submit" class="btn btn-primary">Aceptar</button>
-				 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+				 <button type="submit" class="btn elim">Aceptar</button>
+				 <button type="button" class="btn elim" data-dismiss="modal">Cerrar</button>
 			</div>
 		</form>
 	</div>
