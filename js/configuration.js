@@ -123,10 +123,6 @@ $(document).ready(function(){
             				    deletebyid($(button).attr("item-id"))
 							}
 						});
-						/*if(confirm("Desea eliminar este "+(pag=='size' ? 'Tamaño' : 'Soporte'))){
-            				$(this).parent().parent().remove();
-            				deletebyid($(this).attr("item-id"))
-            			}*/
             		})
             		$("#lista tbody tr:last td:last .btn-primary").click(function(){
             			showModal(JSON.parse($(this).data("full-item")));
