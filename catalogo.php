@@ -30,9 +30,7 @@
           <a href="carrito.php"><h4>carrito</h4></a>
           <a href="#logModal" data-toggle="modal" data-target="#logModal"><h4>login</h4></a>
       </div>
-
       <div class="col-md-8 col-sm-8 text-left">
-
             <div class="catalog">
               <h1> ILUSTRACIONES BELLAS Y HERMOSAS</h1>
               <a href="#ilusModal" data-toggle="modal" data-target="#ilusModal">"ILUSTRACION BELLA Y HERMOSA" <br> CLICKEAME PUES! </a>
