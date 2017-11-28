@@ -49,4 +49,7 @@ $(document).ready(function(){
 	    	$('html').loading("stop");
 	    }
 	});
+	$("[href]").click(function(){
+      $('html').loading();
+    })
 });

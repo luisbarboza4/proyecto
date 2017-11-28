@@ -78,10 +78,6 @@ $(document).ready(function(){
     				                        	deletebyid($(button).attr('id'));
 									        }
 									    });
-                                        /*if(confirm("Desea eliminar este costo")){
-    				                        $(this).parent().parent().remove();
-    				                        deletebyid($(this).attr('id'));
-    			                        }*/
                                     });
                     imgdiv.append(buttonDel);
                     $(".images-list").append(div);
@@ -171,10 +167,6 @@ $(document).ready(function(){
 					viewtable();
 		        }
 		    });
-			/*if(confirm("Desea eliminar este costo")){
-				$(this).parent().remove();
-				viewtable();
-			}*/
 		})
 		viewtable();
 	}
@@ -264,4 +256,7 @@ $(document).ready(function(){
     	$('#myModal').modal('show');
     }
 	searchIMG()
+	$("[href]").click(function(){
+      $('html').loading();
+    })
 });

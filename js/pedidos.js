@@ -112,4 +112,7 @@ $(document).ready(function(){
     	});
     }
     search();
+    $("[href]").click(function(){
+      $('html').loading();
+    })
 });
