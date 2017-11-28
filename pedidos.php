@@ -1,5 +1,8 @@
 <?php
 	include_once("config.php");
+	if(@$user && @$user['type']!='Admin'){
+	    redirect("index.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/styles2.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -43,8 +47,8 @@
                                 <div class="col-xs-3">
                                     <select id="status_select" class="form-control input-xs supp">
                                         <option value="">Todos</option>
-                                        <option value="0">Pendiente</option>
-                                        <option value="1">Listo</option>
+                                        <option value="Pendiente">Pendiente</option>
+                                        <option value="Listo">Listo</option>
                                     </select>
                                 </div>
                           </div>

@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+        RewriteEngine on
+
+        RewriteCond %{REQUEST_URI} \bimg\b                                                                                                                           
+        RewriteRule ^(.*)$ file_proxy.php?fn=$1 [L,QSA]                                                                                                                  
+        
+        RewriteCond %{REQUEST_URI} \bupload\b                                                                                                                           
+        RewriteRule ^(.*)$ file_proxy.php?fn=$1 [L,QSA]
+
+</IfModule>

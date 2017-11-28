@@ -259,4 +259,7 @@ $(document).ready(function(){
 	$("[href]").click(function(){
       $('html').loading();
     })
+	document.oncontextmenu = function(){
+		return false
+	}
 });

@@ -5,7 +5,7 @@ if(!isset($_SESSION)){
 include_once("class.db.php");
 include_once("functions.php");
 
-$userdb = "root";
+$userdb = "cuatro";
 $passdb = "";
 $hostdb = "localhost";
 $namedb = "proyecto";
@@ -24,5 +24,5 @@ if(isset($username) && isset($password)){
 }
 
 if(!@$user && !@$index){
-    redirect("admin.php");
+    redirect("index.php");
 }

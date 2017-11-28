@@ -157,11 +157,11 @@ img:not(.ignore){
 
 .admin input[type=text], input[type=password], textarea{
 	border: 0;
-	background-color: #f6cfd3;
+	background-color: #f6cfd3!important;
 	width: 50%;
 	height: 5%;
 	text-align: center;
-	color: #fff;
+	color: #fff!important;
 }
 
 .admin textarea{
@@ -390,4 +390,7 @@ input[type=text], input[type=password], input[type=email], textarea{
 }
 .form-control{
 	width: 100%!important;
+}
+.glyphicon-picture{
+	cursor: pointer;
 }

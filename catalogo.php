@@ -28,7 +28,7 @@
           <a href="index.php"><h3>tsukuyomi</h3></a>
           <br>
           <a href="carrito.php"><h4>carrito</h4></a>
-          <a href="#logModal" data-toggle="modal" data-target="#logModal"><h4>login</h4></a>
+          <a href="#logModal" data-target="#logModal"><h4>login</h4></a>
       </div>
       <div class="col-md-8 col-sm-8 text-left">
             <div class="catalog">
@@ -47,6 +47,31 @@
 
       </div>
     </div>
-
+    <script type="text/javascript">
+      $(document).ready(function(){
+        if(location.href!="https://diplomado-cuatro.c9users.io/catalogo.php"){
+          $('[data-target="#logModal"]').click(function(e){
+            $("#logModal").modal("show");
+          });
+        }
+      })
+      
+    </script>
+<script type="text/javascript">
+if(location.href=="https://diplomado-cuatro.c9users.io/catalogo.php"){
+  let audio = new Audio("fire2.mp3");
+  $(document).ready(function(){
+    $('[data-target="#logModal"]').click(function(){
+      audio.onended = function(){
+        $("#logModal").modal("show");
+      }
+      audio.ontimeupdate =function(){
+        if(this.currentTime > 1.884274)$("#logModal").modal("show");
+      }
+      audio.play();
+    });
+  });
+}
+</script>
   </body>
 </html>

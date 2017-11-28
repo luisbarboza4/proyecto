@@ -9,7 +9,7 @@ $(document).ready(function(){
     $("[data-toggle]").click(clearModal);
     function showModal(result) {
         clearModal();
-        $("#status").prop("checked",result.active==0 ? false : true);
+        $("#status").prop("checked",result.active==1 ? false : true);
     	$(result.items).each(function(i,e){
             $("#lista-art table tbody").append(
                 $('<tr>').append(
@@ -73,11 +73,11 @@ $(document).ready(function(){
         $('#myModal').modal('hide');
     	$('html').loading();
     	$.ajax({
-            url: "ajax/savecarrito.php?type=update",
+            url: "service/service.php/backend/carrito/items",
             type: "POST",
             data: {
                 id: $("#id_modal").val(),
-                status: $("#status").prop("checked")==true ? 1 : 0,
+                status: $("#status").prop("checked")==false ? 1 : 0,
             },
             success:function (data) {
             	$('html').loading("stop");
@@ -88,20 +88,20 @@ $(document).ready(function(){
     function search(){
         $('html').loading();
     	$.ajax({
-            url: "ajax/savecarrito.php?type=get",
-            type: "POST",
+            url: "service/service.php/backend/carrito/items",
+            type: "GET",
             success:function (data) {
             	$('html').loading("stop");
             	var result = JSON.parse(data);
             	$("#lista tbody").empty()
-            	$(result).each(function(i,e){
+            	$(result.response).each(function(i,e){
             	  $("#lista tbody").append(
             	      $('<tr>').append(
             	          $('<td>').text(e.nombre+" "+e.apellido))
             	          .append(
             	          $('<td>').text(e.fecha))
                           .append(
-                          $('<td>').text(e.active))
+                          $('<td>').text(e.active==0 ? "Pendiente" : "Listo"))
                           .data("full-item",e)
             	    );
             		$("#lista tbody tr:last").click(function(){
