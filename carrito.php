@@ -46,7 +46,7 @@
           </thead>
           <tbody>
             <tr>
-              <td align="center"><a href="https://placeholder.com"><img src="http://via.placeholder.com/100x100"></a></td>
+              <td align="center"><img src="http://via.placeholder.com/100x100"></td>
               <td>ilustracion1</td>
               <td>tabloide</td>
               <td>opalina</td>
@@ -54,7 +54,7 @@
               <td><button type="button" class="btn elim">Eliminar</button></td>
             </tr>
             <tr>
-              <td align="center"><a href="https://placeholder.com"><img src="http://via.placeholder.com/100x100"></a></td>
+              <td align="center"><img src="http://via.placeholder.com/100x100"></td>
               <td>ilustracion2</td>
               <td>carta</td>
               <td>cartulina</td>

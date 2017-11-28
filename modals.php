@@ -7,9 +7,7 @@
         <div class="modal-body">
           <div class="col-md-6">
             <div class="imagenprueba">
-              <center>
-                <a href="https://placeholder.com"><img src="http://via.placeholder.com/400x450"></a>
-              </center>
+                <img src="http://via.placeholder.com/400x450">
             </div>
           </div>
           <div class="col-md-6">
