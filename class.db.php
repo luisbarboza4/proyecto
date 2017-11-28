@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: gustavog
- * Date: 24/04/17
- * Time: 12:02 AM
- */
 class SQL{
     private $link;
     private $res;
