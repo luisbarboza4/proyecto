@@ -47,6 +47,33 @@ Flight::route('POST /@api/backend/carrito/items', function() {
         }
 });
 
+//config del backend
+
+Flight::route('GET /@api/backend/config', function() {
+	global $db;
+	$config = $db->fetch_all("SELECT * FROM config",false,"name");
+	if ($config){
+	responseOk($config);
+	}else{
+	responseError("Error en consulta!","002");
+	}
+});
+
+Flight::route('POST /@api/backend/config', function() {
+	foreach (Flight::request()->data as $key => $value) {
+		$db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>$key,":value"=>$value));
+	}
+	if(isset($_FILES) && $_FILES['image_user']['tmp_name']){
+		move_uploaded_file($_FILES['image_user']['tmp_name'], "../img/profile/image_user") or die($_FILES["image_user"]["error"]);
+		$db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>"image_user",":value"=>"img/profile/image_user"));
+	}
+	if ($config){
+	responseOk($config);
+	}else{
+	responseError("Error en consulta!","002");
+	}
+});
+
 ////rutas de imagenes
 //obtener todas las imagenes (sólo datos de la tabla)
 Flight::route('GET /@api/images/', function() {
