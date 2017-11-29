@@ -15,6 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Expires" content="0"/>
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -29,7 +32,7 @@
 		include_once("navbar.php");
 	?>
 <div class="row">
-	<br><br>
+	<br>
 	<div class="form-group">
 	    <div class="col-xs-offset-4 col-xs-1">
 	        <label for="buscar" class="control-label">Buscar:</label>
@@ -38,7 +41,7 @@
 	        <input  type="text" maxlength="30" name="buscar" id="buscar" class="form-control" placeholder="nombre de ilustracion"/>
 	    </div>
 	</div>
-	<br><br>
+	<br>
 </div>
 <div class="row row-main images-list">
 </div>

@@ -5,18 +5,18 @@
 1: milagrosamente logro hacer esa mielda (pa ser ilustradora tapada le echo bola)
 2: el usuario monto la imagenes en el carrito pero esta esperando que el dolar baje y los precios bajen para darle a comprar
   -->
-      <!-- Modal content-->
-      <div class="modal-content" id="modalstyle">
+      <!-- Modal content--> 
+      <div class="modal-content ilumodal" id="modalstyle">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="modal-body">
           <div class="col-md-6">
             <div class="imagenprueba">
-                <img src="http://via.placeholder.com/400x450">
+                <img class="illus ignore" src="">
             </div>
           </div>
           <div class="col-md-6">
               <h4>Nombre ilustracion</h4>
-              <h5>impresion</h5>
+              <h5 class="name">impresion</h5>
               <br><br>
               <!-- Formulario de Pedido -->
               <form id="pedido" class="pedido" action="catalogo.html" method="post">
@@ -65,7 +65,7 @@
               <h3 class="logh2">Bienvenido!</h3>
               <h4 class="logh2">Es necesario conectarse para poder realizar pedidos.</h4>
               <br>
-              <form class="login" action="catalogo.php" method="post">
+              <form id="modalLogin" class="login" action="control.php" method="post">
 
                 <label for="username"> Username </label>
                 <br>
@@ -73,12 +73,46 @@
                 <br>
                 <label for="pass"> Password </label>
                 <br>
-                <input type="password" name="pass" value="" placeholder="password">
+                <input type="password" name="password" value="" placeholder="password">
                 <br><br>
-                <input type="submit" name="submit" value="Entrar" class="btn elim">
+                <input id="loginBTN" type="button" value="Entrar" class="btn elim">
                 <a href="registro.php"><button type="button" name="button" class="btn elim">Registrarse</button></a>
                 <br><br>
                 <a href="recuperar.php" class="recover">Recuperar Contraseña</a>
+                
+                <div style="display:none" id="mensajeError" class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center mensajeError"></div>
+                <div style="display:none" id="cargandoLogin" class='contain'>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                  <svg height='80' width='210'>
+                    <ellipse cx='25' cy='20' fill='none' rx='10' ry='10'></ellipse>
+                  </svg>
+                </div>
               </form>
             </div>
           </div>

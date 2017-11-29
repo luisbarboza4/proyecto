@@ -9,17 +9,20 @@ $(document).ready(function () {
 		} else {
 			var reader = new FileReader();
 			reader.onload = function (e) {
-				$('#image-show').attr('src', e.target.result);
+				$('#image-show').css({"background-image":"url("+e.target.result+")"});
 			}
 			reader.readAsDataURL($(this).get(0).files[0]);
 		}
 	})
+	$("#image-show").click( function(){
+		$("#image_user").click()
+	});
 	$("#form").submit(function (e) {
 		e.preventDefault();
 		var data = new FormData(this);
 		$('html').loading();
 		$.ajax({
-			url: "ajax/saveconf.php?type=post",
+			url: "service/service.php/backend/config",
 			type: "POST",
 			data: data,
 			cache: false,
@@ -33,10 +36,11 @@ $(document).ready(function () {
 		});
 	})
 	$.ajax({
-		url: "service/service.php/backend/carrito/items",
+		url: "service/service.php/backend/config",
 		type: "GET",
 		success: function (data) {
 			var result = JSON.parse(data);
+			result = result.response;
 			if (result.name_user) {
 				$("#name_user").val(result.name_user.value);
 			}
@@ -44,7 +48,9 @@ $(document).ready(function () {
 				$("#about_user").val(result.about_user.value);
 			}
 			if (result.image_user) {
-				$("#image-show").attr("src", result.image_user.value);
+    			$("#image-show").css({
+    			    "background-image":"url("+result.image_user.value+"?time="+(new Date()).getTime()+")"
+    			});
 			}
 			$('html').loading("stop");
 		}

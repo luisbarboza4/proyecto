@@ -7,20 +7,19 @@ Flight::map('notFound', function(){
     echo(responseError("Parametros o método inválido.",404));
 });
 
-
-//@api debe ser llamado al principio de la ruta si no explota porque el htaccess explota y todo explota
-//putas de sesión
+//rutas de sesión
 //inicio de sesión
 Flight::route('POST /@api/session/login', function() {
 	global $db;
 	$username = Flight::request()->data->username;
 	$password = md5(Flight::request()->data->password);
 	$username = $username;
-	//$results = $mysqli->query("SELECT * FROM user WHERE username='$username' AND password='$password'");
 	if ($db->fetch_item("SELECT * FROM user WHERE username=:username AND password=:pass",array(':username'=>$username,':pass'=>$password))){
-    responseOk("Bienvenido!");
+		$_SESSION['username'] = $username;
+		$_SESSION['password'] = $password;
+    	responseOk("Bienvenido!");
 	}else{
-	responseError("Credenciales no válidas.","001");
+		responseError("Credenciales no válidas.","001");
 	}
 });
 
@@ -48,31 +47,28 @@ Flight::route('POST /@api/backend/carrito/items', function() {
 });
 
 //config del backend
-
 Flight::route('GET /@api/backend/config', function() {
 	global $db;
 	$config = $db->fetch_all("SELECT * FROM config",false,"name");
 	if ($config){
-	responseOk($config);
+		responseOk($config);
 	}else{
-	responseError("Error en consulta!","002");
+		responseError("Error en consulta!","002");
 	}
 });
 
 Flight::route('POST /@api/backend/config', function() {
+	global $db;
 	foreach (Flight::request()->data as $key => $value) {
 		$db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>$key,":value"=>$value));
 	}
-	if(isset($_FILES) && $_FILES['image_user']['tmp_name']){
-		move_uploaded_file($_FILES['image_user']['tmp_name'], "../img/profile/image_user") or die($_FILES["image_user"]["error"]);
+	$files = Flight::request()->files;
+	if(isset($files) && $files['image_user']['tmp_name']){
+		move_uploaded_file($files['image_user']['tmp_name'], "../img/profile/image_user") or die($files["image_user"]["error"]);
 		$db->insert("INSERT INTO config SET name=:name,value=:value ON DUPLICATE KEY UPDATE value=:value",array(":name"=>"image_user",":value"=>"img/profile/image_user"));
 	}
-	if ($config){
-	responseOk($config);
-	}else{
-	responseError("Error en consulta!","002");
-	}
 });
+
 
 ////rutas de imagenes
 //obtener todas las imagenes (sólo datos de la tabla)
@@ -80,11 +76,45 @@ Flight::route('GET /@api/images/', function() {
 	global $db;
 	$images = $db->fetch_all("SELECT * FROM imagenes");
 	if ($images){
-	responseOk($images);
+		responseOk($images);
 	}else{
-	responseError("Error en consulta!","002");
+		responseError("Error en consulta!","002");
 	}
 });
+
+//obtener todos los tamanos disponibles de un id
+Flight::route('GET /@api/size/', function($size) {
+	global $db;
+	$images = $db->fetch_all("SELECT * FROM size WHERE id = :id",array(":id"=>$size));
+	if ($images){
+		responseOk($images);
+	}else{
+		responseError("Error en consulta!","002");
+	}
+});
+
+//obtener todos los soportes disponibles de un id
+Flight::route('GET /@api/soporte/', function($soporte) {
+	global $db;
+	$images = $db->fetch_all("SELECT * FROM soporte WHERE id = :id",array(":id"=>$soporte));
+	if ($images){
+		responseOk($images);
+	}else{
+		responseError("Error en consulta!","002");
+	}
+});
+
+//obtener las relaciones soporte-tamaño-imagen
+Flight::route('GET /@api/images/rel/@img', function($img) {
+	global $db;
+	$images = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_image = :id", array(":id"=>$img));
+	if ($images){
+		responseOk($images);
+	}else{
+		responseError("Error en consulta!","002");
+	}
+});
+
 
 Flight::start();
 ?>

@@ -16,6 +16,9 @@
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+	<meta http-equiv="Expires" content="0"/>
 	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -35,10 +38,10 @@
 	<div class="row">
 		<div class="col-xs-offset-3 col-xs-6">
 			<div class="form-group formini" style="text-align: center;">
+				<div id="image-show" class="img img-responsive img-circle"></div>
 				<label for="image_user">
-					<img src="img/user.jpg" id="image-show" class="img-responsive">
-					<input type="file" name="image_user" id="image_user">
-					</label>
+				<input type="file" name="image_user" id="image_user">
+				</label>
 			</div>
 			<div class="form-group formini">
 				<label for="name_user">Nombre:
@@ -51,7 +54,7 @@
 				<textarea name="about_user" id="about_user" rows="5"></textarea>
 			</div>
 			<div class="form-group" style="text-align: center;">
-				<input class="btn elim" type="submit" name="save" id="save" value="Guardar">
+				<input class="btn elim" type="submit" id="save" value="Guardar">
 			</div>
 		</div>
 	</div>
@@ -60,6 +63,6 @@
 }
 include("footer.php");
 ?>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
 </body>
 </html>

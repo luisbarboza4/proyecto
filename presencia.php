@@ -18,27 +18,26 @@
   	<title>TSUKUYOMI STORE | CATALOGO</title>
   </head>
   <body class="presencia">
-
     <div class="row">
-      <div class="col-sm-12 text-center intro">
-        <center>
-          <a href="https://placeholder.com"><img src="http://via.placeholder.com/250x250"></a>
-        </center>
+      <div class="col-xs-12 text-center intro">
+        <div class="row">
+          <div class="col-xs-offset-4 col-xs-4">
+            <div src="img/user.jpg" class="img img-responsive img-circle"></div>
+          </div>
+        </div>
         <h3> tsukiko </h3>
-        <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+        <!--h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>-->
         <br>
-        <center>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
           Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </center>
       </div>
     </div>
-
+    <script type="text/javascript" src="js/presencia.js"></script>
   </body>
 </html>
