@@ -14,7 +14,8 @@ $(document).ready(function(){
 			    	"href" : "#ilusModal",
 			    	"data-toggle" : "modal",
 			    	"data-target" : "#ilusModal",
-			    	"data-name"   : result[i].name
+			    	"data-name"   : result[i].name,
+			    	"data-id" : result[i].id
 			    })
 			    .addClass("ignore")
 			    .on('load',function(){
@@ -25,10 +26,20 @@ $(document).ready(function(){
 			    	$(".ilumodal .illus").attr("src" , $(this).attr("src"));
 			    	$(".ilumodal .size").attr("disabled", true);
 			    	$(".ilumodal .supp").attr("disabled" , true);
+			    	var id = $(this).attr("data-id");
 			    	var sizes,supp,rel;
 			    	$.ajax({
-			    		
-			    	})
+			    	url: "service/service.php/images/rel/",
+			    	type: "POST",
+			    	data: {"id" : id},
+			    	success: function (data){
+			    		var result = JSON.parse(data);
+			    		result = result.response;
+			    		$.ajax({
+			    			url: "service/service.php/size"
+			    		});
+			    	}
+			    	});
 			    });
 			    divitem.append(img);
 				$(".row.catalogo").append(divitem);

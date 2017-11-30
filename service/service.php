@@ -22,6 +22,22 @@ Flight::route('POST /@api/session/login', function() {
 		responseError("Credenciales no válidas.","001");
 	}
 });
+//registro (not finished)
+Flight::route('POST /@api/session/register', function() {
+	global $db;
+	$nombre = Flight::request()->data->nombre;
+	$password = md5(Flight::request()->data->pass);
+	$apellido = Flight::request()->data->apellido;
+	$email = Flight::request()->data->email;
+	$username = $username;
+	if ($db->fetch_item("SELECT * FROM user WHERE username=:username AND password=:pass",array(':username'=>$username,':pass'=>$password))){
+		$_SESSION['username'] = $username;
+		$_SESSION['password'] = $password;
+    	responseOk("Bienvenido!");
+	}else{
+		responseError("Credenciales no válidas.","001");
+	}
+});
 
 //service de carritos en el backend
 //get
@@ -83,9 +99,10 @@ Flight::route('GET /@api/images/', function() {
 });
 
 //obtener todos los tamanos disponibles de un id
-Flight::route('GET /@api/size/', function($size) {
+Flight::route('GET /@api/size/', function() {
 	global $db;
-	$images = $db->fetch_all("SELECT * FROM size WHERE id = :id",array(":id"=>$size));
+	$id = Flight::request()->data->id
+	$images = $db->fetch_all("SELECT * FROM size WHERE id = :id",array(":id"=>$id));
 	if ($images){
 		responseOk($images);
 	}else{
@@ -105,9 +122,10 @@ Flight::route('GET /@api/soporte/', function($soporte) {
 });
 
 //obtener las relaciones soporte-tamaño-imagen
-Flight::route('GET /@api/images/rel/@img', function($img) {
+Flight::route('POST /@api/images/rel/', function() {
 	global $db;
-	$images = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_image = :id", array(":id"=>$img));
+	$id = Flight::request()->data->id;
+	$images = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_imagen = :id", array(":id"=>$id));
 	if ($images){
 		responseOk($images);
 	}else{
