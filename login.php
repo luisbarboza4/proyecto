@@ -1,7 +1,7 @@
 <?php include 'messages.php'; ?>
 
 <form action="control.php" method="post" name="login_form" class="">
-<div class="col-md-offset-2 col-md-8 col-md-offset-2 col-xs-8">
+<div class="col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
   <?php if($errormsg)showMessage($errormsg,'error'); ?>
     <div class="row" style="margin-top: 10%; text-align: center;">
       <div class="form-group">

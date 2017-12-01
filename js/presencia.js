@@ -13,7 +13,7 @@ $(document).ready(function () {
     			$("p").text(result.about_user.value);
     		}
     		if (result.image_user) {
-    			$(".img").css({
+    			$(".img-profile").css({
     			    "background-image":"url("+result.image_user.value+"?time="+(new Date()).getTime()+")"
     			});
     		}

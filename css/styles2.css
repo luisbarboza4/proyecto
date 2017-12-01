@@ -67,6 +67,40 @@ img:not(.ignore){
 
 }
 
+.fa {
+  padding: 15px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 15px;
+}
+
+.fa:hover {
+    opacity: 0.5;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
 .reaCompra{
 	background-color: #c0e5ef;
 	color: #fff;
@@ -155,13 +189,13 @@ img:not(.ignore){
 	border-bottom: 3px solid #c0e5ef;
 }
 
-.admin input[type=text], input[type=password], textarea{
+.admin input[type=text],.admin input[type=password],.admin textarea{
 	border: 0;
-	background-color: #f6cfd3!important;
+	background-color: #f6cfd3;
 	width: 50%;
 	height: 5%;
 	text-align: center;
-	color: #fff!important;
+	color: #fff;
 }
 
 .admin textarea{
@@ -231,7 +265,9 @@ input[type=text], input[type=password], input[type=email], textarea{
 	width: 50%;
 	height: 5%;
 	text-align: center;
-	color: #f6cfd3;
+	/*color: #f6cfd3;
+	yo no me voy a quedar ciego */
+	color: #000;
 }
 
 .cantidad{
@@ -259,6 +295,13 @@ input[type=text], input[type=password], input[type=email], textarea{
 	background-color: #f6cfd3;
 	padding: 3px;
 	font-weight: bold;
+}
+
+.change{
+	padding: 3px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: underline;
 }
 
 .row-main{
@@ -327,7 +370,7 @@ input[type=text], input[type=password], input[type=email], textarea{
 }
 
 #logModal{
-	background-color: #fcebed;
+	background-color: #f6cfd3;
 }
 
 #precio{
@@ -373,6 +416,14 @@ input[type=text], input[type=password], input[type=email], textarea{
 	text-align: center;
 }
 
+.backBTN-blue {
+	color: #68b4ff;
+}
+
+.backBTN-blue:hover {
+	color: #fff;
+}
+
 ::-moz-selection { /* Code for Firefox */
     color: #c0e5ef;
     background: #f6cfd3;
@@ -401,6 +452,7 @@ input[type=text], input[type=password], input[type=email], textarea{
     color: #333333e8;
     background-color: #d3d3d34d;
 }
+
 
 /* esto es mio no lo toquen please (ender) */
 
@@ -621,9 +673,12 @@ svg:nth-of-type(10) ellipse {
             transform: translateY(5px) scale(1.3);
   }
 }
-.img{
+.img-profile{
 	background-size:cover;
 	width:300px;
   height:300px;
   background-position: center;
+}
+#carrito td{
+	vertical-align: middle;
 }

@@ -1,6 +1,6 @@
 <?php
 	include_once("config.php");
-	if(@$user && @$user['type']!='Admin'){
+	if(isset($user) && $user['type']!='Admin'){
 	    redirect("index.php");
 	}
 ?>
@@ -23,7 +23,7 @@
     <meta charset="utf-8">
     <title>Configuracion - Pedidos</title>
 </head>
-<body>
+<body class="admin">
     <?php
         include_once("navbar.php");
     ?>
@@ -32,7 +32,7 @@
                 <div class="form-horizontal">
                     <div class="panel panel-default">
                         <div class="panel-heading"><center><strong>Pedidos</center></div>
-                        <input type="hidden" id="pag" value="<?php echo $_GET['type'];?>">
+                        <input type="hidden" id="pag" value="<?php echo @$_GET['type'];?>">
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-xs-offset-2 col-xs-1">
@@ -49,6 +49,8 @@
                                         <option value="">Todos</option>
                                         <option value="Pendiente">Pendiente</option>
                                         <option value="Listo">Listo</option>
+                                        <option value="Cancelado">Cancelado</option>
+                                        <option value="Aceptado">Aceptado</option>
                                     </select>
                                 </div>
                           </div>
@@ -66,6 +68,9 @@
                                         </th>
                                         <th>
                                             Status
+                                        </th>
+                                        <th>
+                                            Total
                                         </th>
                                     </tr>
                                     </thead>
@@ -94,9 +99,14 @@
             <div class="row">
                 <div class="col-xs-offset-1 col-xs-10">
                     <div id="lista-art">
-                        <label for="name_modal">Pendiente:</label>
-                        <input type="checkbox" id="status" name="status">
-                        <table class="table">
+                        <label for="name_modal">Status:</label>
+                        <select class="form-control" id="status">
+                            <option value="0">Pendiente</option>
+                            <option value="1">Listo</option>
+                            <option value="4">Cancelado</option>
+                            <option value="3">Aceptado</option>
+                        </select>
+                        <table id="artc" class="table">
                             <thead>
                                 <tr>
                                     <th>
@@ -120,6 +130,15 @@
                             <tbody>
                             </tbody>
                         </table>
+                        <table id="message" class="table" style="margin-bottom:0px">
+                            <thead>
+                                <th style="text-align: center;">Comentarios
+                                </th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <textarea id="comentario" name="comentario" style="width:100%"></textarea>
                     </div>
                 </div>
             </div>

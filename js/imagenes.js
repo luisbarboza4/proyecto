@@ -70,7 +70,8 @@ $(document).ready(function(){
 									        confirmButtonText: 'Si, eliminar',
 									        cancelButtonText: "No, conservar",
 									        closeOnConfirm: true,
-									        closeOnCancel: true
+									        closeOnCancel: true,
+									        allowEscapeKey: false
 									    },
 									    function(isConfirm) {
 									        if (isConfirm) {
@@ -159,7 +160,8 @@ $(document).ready(function(){
 		        confirmButtonText: 'Si, eliminar',
 		        cancelButtonText: "No, conservar",
 		        closeOnConfirm: true,
-		        closeOnCancel: true
+		        closeOnCancel: true,
+		        allowEscapeKey: false
 		    },
 		    function(isConfirm) {
 		        if (isConfirm) {

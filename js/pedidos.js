@@ -2,16 +2,18 @@ $('html').loading();
 $(document).ready(function () {
     function clearModal() {
         $("#status").prop("checked", false);
-        $("#lista-art table tbody").empty();
+        $("#lista-art #artc tbody").empty();
+        $("#lista-art #message tbody").empty();
+        $("#comentario").val("");
         $("#id_modal").val("0");
     }
     $("[data-dismiss]").click(clearModal);
     $("[data-toggle]").click(clearModal);
     function showModal(result) {
         clearModal();
-        $("#status").prop("checked", result.active == 1 ? false : true);
+        $("#status option[value='"+result.active+"']").prop("selected",true);
         $(result.items).each(function (i, e) {
-            $("#lista-art table tbody").append(
+            $("#lista-art #artc tbody").append(
                 $('<tr>').append(
                     $('<td>').text(e.imagen))
                     .append(
@@ -29,6 +31,12 @@ $(document).ready(function () {
                         })
 
                     )
+            )
+        })
+        $(result.comentarios).each(function (i, e) {
+            $("#lista-art #message tbody").append(
+                $('<tr>').append(
+                    $('<td>').text(e.name+": "+e.mensaje))
             )
         })
         $("#id_modal").val(result.id);
@@ -50,7 +58,8 @@ $(document).ready(function () {
             $('#lista tbody tr').show();
         } else {
             $('#lista tbody tr').each(function (i, e) {
-                if ($(e).find("td:last").html().toUpperCase().indexOf(filter) > -1) {
+                var td = $(e).find('td')[2];
+                if ($(td).html().toUpperCase().indexOf(filter) > -1) {
                     $(e).show();
                 } else {
                     $(e).hide();
@@ -77,7 +86,8 @@ $(document).ready(function () {
             type: "POST",
             data: {
                 id: $("#id_modal").val(),
-                status: $("#status").prop("checked") == false ? 1 : 0,
+                status: $("#status").val(),
+                message: $("#comentario").val()
             },
             success: function (data) {
                 $('html').loading("stop");
@@ -95,13 +105,30 @@ $(document).ready(function () {
                 var result = JSON.parse(data);
                 $("#lista tbody").empty()
                 $(result.response).each(function (i, e) {
+                    var status = "";
+                    switch(e.active){
+                        case '0':
+                            status = "Pediente";
+                            break;
+                        case '1':
+                            status = "Listo";
+                            break;
+                        case '3':
+                            status = "Aceptado";
+                            break;
+                        case '4':
+                            status = "Cancelado";
+                            break;
+                    }
                     $("#lista tbody").append(
                         $('<tr>').append(
                             $('<td>').text(e.nombre + " " + e.apellido))
                             .append(
                             $('<td>').text(e.fecha))
                             .append(
-                            $('<td>').text(e.active == 0 ? "Pendiente" : "Listo"))
+                            $('<td>').text(status))
+                            .append(
+                            $('<td>').text(e.total))
                             .data("full-item", e)
                     );
                     $("#lista tbody tr:last").click(function () {

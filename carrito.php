@@ -33,51 +33,36 @@
     <div class="row">
       <div class="col-sm-12 baul">
 
-        <table class="table table-hover">
+        <table id="carrito" class="table table-hover">
           <thead>
             <tr>
-              <td>ilustración</td>
+              <td>ilustraci&oacuten</td>
               <td>cantidad</td>
-              <td>tamaño</td>
+              <td>tama&ntilde;o</td>
               <td>soporte</td>
               <td>total</td>
               <td> </td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td align="center"><img src="http://via.placeholder.com/100x100"></td>
-              <td>ilustracion1</td>
-              <td>tabloide</td>
-              <td>opalina</td>
-              <td>precioBsF</td>
-              <td><button type="button" class="btn elim">Eliminar</button></td>
-            </tr>
-            <tr>
-              <td align="center"><img src="http://via.placeholder.com/100x100"></td>
-              <td>ilustracion2</td>
-              <td>carta</td>
-              <td>cartulina</td>
-              <td>precioBsF</td>
-              <td><button type="button" class="btn elim">Eliminar</button></td>
-            </tr>
+            
           </tbody>
         </table>
       </div>
 
       <div class="row">
         <div class="col-sm-4 comprar text-center">
-          <h4>Total de Impresiones: <span id="timp"></span></h4>
+          <h4>Total de Impresiones: <span id="timp">0</span></h4>
         </div>
         <div class="col-sm-4 comprar">
-          <h4>Pago Total: <span id="tpago"></span></h4>
+          <h4>Pago Total: <span id="tpago">0</span></h4>
         </div>
         <div class="col-sm-4 comprar">
-          <button type="button" name="button" class="btn reaCompra">Realizar Compra</button>
+          <button type="button" name="button" id="btnCompra" disabled="true" class="btn reaCompra">Realizar Compra</button>
         </div>
       </div>
 
     </div>
-
+  <script src="js/carrito.js"></script>
   </body>
 </html>

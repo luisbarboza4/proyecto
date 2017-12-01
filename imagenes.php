@@ -1,6 +1,6 @@
 <?php 
 	include_once("config.php");
-	if(@$user && @$user['type']!='Admin'){
+	if(isset($user) && $user['type']!='Admin'){
 	    redirect("index.php");
 	}
 ?>

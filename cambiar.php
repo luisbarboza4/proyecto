@@ -53,25 +53,30 @@
       <div class="row">
         
         <div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-0 text-center">
-          <h4 class="logh">Por favor, escriba su E-mail y usuario para recuperar su contraseña</h4>
+          <h4 class="logh">Cambiar contrase&ntilde;a</h4>
         </div>
         <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 text-center">
           
           <br>
-          <form class="login" id="recuperar" action="" method="post">
+          <form class="editar" id="cambiar" action="" method="post">
             
             <div class="form-group">
-              <label for="rr_username"> Usuario </label>
-              <input id="rr_username" class="form-control input-sm" type="text" name="username" value="" placeholder="Usuario" required>
+              <label for="e_password"> Contrase&ntilde;a Actual</label>
+              <input id="e_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="contraseña actual" required>
             </div>
-            
-            <div class="form-group">
-              <label for="rr_email"> E-mail </label>
-              <input id="rr_email" class="form-control input-sm" type="email" name="email" value="" placeholder="tucorreo@ejemplo.com" required>
-            </div>
-           
             <br>
-            <button type="submit" name="button" class="btn elim">Recuperar</button>
+            <div class="form-group">
+              <label for="ed_password"> Nueva Contrase&ntilde;a </label>
+              <input id="ed_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="nueva contraseña" required>
+            </div>
+            
+             <div class="form-group">
+              <label for="ed_password"> Repita la nueva Contrase&ntilde;a </label>
+              <input id="ed_password" class="form-control input-sm" type="password" name="pass" value="" placeholder=" repetir contraseña" required>
+            </div>
+            
+            <br>
+            <button type="submit" name="button" class="btn elim">Cambiar</button>
           </form>
         </div>
       </div>

@@ -36,11 +36,11 @@
         } else {
             $db->update("UPDATE imagenes SET name=:name, mostrar=:mostrar WHERE id=:id",array(":name"=>$_POST['name_img'],":mostrar"=>($_POST['public_img']?1:0),":id"=>$_POST["id_imagen"]));
         }
-        /*$array = $db->fetch_all("SELECT id FROM img_sop_size WHERE id NOT IN (".implode(",", $_POST["id_costo"]).")");
+        /* $array = $db->fetch_all("SELECT id FROM img_sop_size WHERE id NOT IN (".implode(",", $_POST["id_costo"]).")");
         error_log("ErrorGG: SELECT id FROM img_sop_size WHERE id NOT IN (".implode(",", $_POST["id_costo"]).")");
-        error_log("ErrorGG: (".print_r($array,true));*/
+        error_log("ErrorGG: (".print_r($array,true)); */
         
-        $db->delete("DELETE FROM img_sop_size WHERE id NOT IN (".implode(",", $_POST["id_costo"]).")");
+        $db->delete("DELETE FROM img_sop_size WHERE id NOT IN (".implode(",", $_POST["id_costo"]).") AND id_image=:idimg", array(":idimg"=>$_POST["id_imagen"]));
         foreach($_POST['costo'] as $i=>$val){
             if($_POST["id_costo"][$i] > 0){
                 //die("UPDATE img_sop_size SET id_size={$_POST['size_img'][$i]}, id_soporte={$_POST['type_img'][$i]}, costo={$_POST['costo'][$i]}  WHERE id=:id");

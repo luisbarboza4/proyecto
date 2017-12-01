@@ -30,7 +30,7 @@
 <body class="admin">
 <?php
 	include_once("navbar.php");
-	if(!@$user){
+	if(!isset($user)){
 		include_once("login.php");
 	}else{
 ?>
@@ -38,7 +38,7 @@
 	<div class="row">
 		<div class="col-xs-offset-3 col-xs-6">
 			<div class="form-group formini" style="text-align: center;">
-				<div id="image-show" class="img img-responsive img-circle"></div>
+				<div id="image-show" class="img-profile img-responsive img-circle"></div>
 				<label for="image_user">
 				<input type="file" name="image_user" id="image_user">
 				</label>

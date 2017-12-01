@@ -15,12 +15,12 @@
             </div>
           </div>
           <div class="col-md-6">
-              <h4>Nombre ilustracion</h4>
-              <h5 class="name">impresion</h5>
+              <h4>Nombre ilustraci&oacute;n</h4>
+              <h5 class="name">Impresi&oacute;n</h5>
               <br><br>
               <!-- Formulario de Pedido -->
               <form id="pedido" class="pedido" action="catalogo.html" method="post">
-                <label for="size">tamaño</label>
+                <label for="size">Tama&ntilde;o</label>
                 <br>
                 <select class="size" name="size">
                   <!-- Traerse las opciones de tamaño -->
@@ -29,7 +29,7 @@
                   <option value="">etc</option>
                 </select>
                 <br><br>
-                <label for="supp">soporte</label>
+                <label for="supp">Soporte</label>
                 <br>
                 <select class="supp" name="supp">
                   <!-- Traerse las opciones de tamaño -->
@@ -38,7 +38,7 @@
                   <option value="">etc</option>
                 </select>
                 <br><br>
-                <label for="cantidad">cantidad</label>
+                <label for="cantidad">Cantidad</label>
                 <br>
                 <input class="cantidad" type="number" name="cantidad" value="" min="1" max="10">
                 <br><br><br>
@@ -78,7 +78,7 @@
                 <input id="loginBTN" type="button" value="Entrar" class="btn elim">
                 <a href="registro.php"><button type="button" name="button" class="btn elim">Registrarse</button></a>
                 <br><br>
-                <a href="recuperar.php" class="recover">Recuperar Contraseña</a>
+                <a href="recuperar.php" class="recover">Recuperar Contrase&ntilde;a</a>
                 
                 <div style="display:none" id="mensajeError" class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center mensajeError"></div>
                 <div style="display:none" id="cargandoLogin" class='contain'>

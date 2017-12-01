@@ -8,7 +8,6 @@ if(file_exists($file) && is_readable($file) && !is_dir($file)){
     header("Pragma: cache");
     header("Cache-Control: max-age=3600");
     header('Content-length: '.filesize($file));
-    header('iwalp-app: true');
     $fh = @fopen($file, 'rb');
 	if ($fh) {
         fpassthru($fh);

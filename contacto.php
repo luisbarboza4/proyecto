@@ -30,42 +30,27 @@
     <div class="container-fluid">
       <div class="row">
         <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 text-center">
-          <h4 class="logh">Registro</h4>
+          <h4 class="logh">Contáctame</h4>
           <br>
-          <form class="login" id="registro" action="catalogo.php" method="post">
+          <form class="contact" id="mensaje" action="catalogo.php" method="post">
             
             <div class="form-group">
-              <label for="r_nombre"> Nombre </label>
-              <input id="r_nombre" class="form-control input-sm" type="text" name="nombre" value="" placeholder="Nombre" required>
+              <label for="c_nombre"> Nombre </label>
+              <input id="c_nombre" class="form-control input-sm" type="text" name="nombre" value="" placeholder="Nombre" required>
             </div>
             
             <div class="form-group">
-              <label for="r_apellido"> Apellido </label>
-              <input id="r_apellido" class="form-control input-sm" type="text" name="apellido" value="" placeholder="Apellido" required>
+              <label for="c_email"> E-mail </label>
+              <input id="c_email" class="form-control input-sm" type="email" name="email" value="" placeholder="ejemplo@ejemplo.com" required>
             </div>
             
             <div class="form-group">
-              <label for="r_email"> E-mail </label>
-              <input id="r_email" class="form-control input-sm" type="email" name="email" value="" placeholder="ejemplo@ejemplo.com" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="r_usuario"> Usuario </label>
-              <input id="r_usuario" class="form-control input-sm" type="text" name="username" value="" placeholder="usuario" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="r_password"> Contraseña </label>
-              <input id="r_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="contraseña" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="r_passrepeat"> Confirmar contraseña </label>
-              <input id="r_passrepeat" class="form-control input-sm" type="password" name="passrepit" value="" placeholder="confirme la contraseña" required>
+              <label for="c_mensaje"> Mensaje </label>
+              <textarea name="mensaje" id="c_mensaje" class="form-control input-sm" rows="10"></textarea>
             </div>
             
             <br>
-            <button type="submit" name="button" class="btn elim">Registrarse</button>
+            <button type="submit" name="button" class="btn elim"> Enviar </button>
           </form>
         </div>
       </div>

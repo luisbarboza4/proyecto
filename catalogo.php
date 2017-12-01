@@ -1,4 +1,6 @@
 <?php
+  $index = true;
+  include_once("config.php");
   include_once("modals.php");
   if(isset($_REQUEST['username'])){
     include_once("control.php");
@@ -8,6 +10,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
   	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
@@ -30,8 +33,7 @@
       <div id="menu" class="col-md-2 col-sm-2 text-left">
           <a href="index.php"><h3>tsukuyomi</h3></a>
           <br>
-          <a href="carrito.php"><h4>carrito</h4></a>
-          <a href="#logModal" data-target="#logModal"><h4>login</h4></a>
+          <?php include_once("link.php"); ?>
       </div>
       <div class="col-md-8 col-sm-8 text-left">
             <div class="catalog">

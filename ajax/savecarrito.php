@@ -5,7 +5,8 @@
     case "get":
         $carrito = $db->fetch_all("SELECT DATE_FORMAT(c.fecha,'%d/%m/%Y') AS fecha,u.nombre,u.apellido,c.id,c.active FROM carrito c INNER JOIN user u ON u.id=c.id_user WHERE c.active!=2");
         foreach ($carrito as $key => $value) {
-            $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id");
+            $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta,iss.costo FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
+            $carrito[$key]["total"] = $db->fetch_all("SELECT SUM(ac.costo) FROM img_sop_size iss INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
         }
         die(json_encode($carrito));
     case "update":
