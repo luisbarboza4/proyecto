@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `articulos_carrito`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `articulos_carrito` (
   `id_carrito` int(11) NOT NULL,
-  `id_img_tam` int(11) NOT NULL,
+  `id_img_sop` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

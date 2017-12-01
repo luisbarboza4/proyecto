@@ -38,12 +38,27 @@ Flight::route('POST /@api/session/changepass', function() {
 	global $db;
 	$username = Flight::request()->data->username;
 	$newpass = md5(Flight::request()->data->newpassword);
-	if($db->fetch_item("UPDATE user SET password=:password WHERE username=:username",array(':password'=>$newpass, ':username'=>$username))){
-		responseOk("Contraseña actualizada con exito.","002");
+	$pass = md5(Flight::request()->data->currentpassword);
+	
+	if($db->fetch_item("SELECT id FROM user WHERE username=:username",array(':username'=>$username))){
+		
+		if($db->fetch_item("SELECT id FROM user WHERE username=:username AND password=:password",array(':username'=>$username, ':password'=>$pass))){
+			
+			if($db->update("UPDATE user SET password=:password WHERE username=:username",array(':password'=>$newpass, ':username'=>$username))){
+				responseOk("Contraseña actualizada con exito.","002");
+			} else {
+				responseError("Error en consulta!","002");
+			}
+			
+		} else {
+			responseError("Contraseña actual inválida.","004");
+		}
+	
+	} else {
+		responseError("No existe un usuario logueado actualmente.","004");
 	}
-	else{
-		responseError("Datos del usuario inválidos.","004");
-	}
+	
+	
 });
 
 //registro (not finished)
@@ -70,7 +85,7 @@ Flight::route('GET /@api/backend/carrito/items', function() {
 	global $db;
         $carrito = $db->fetch_all("SELECT DATE_FORMAT(c.fecha,'%d/%m/%Y') AS fecha,u.nombre,u.apellido,c.id,c.active FROM carrito c INNER JOIN user u ON u.id=c.id_user WHERE c.active!=2");
         foreach ($carrito as $key => $value) {
-            $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta,iss.costo FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
+            $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta,iss.costo FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
             $carrito[$key]["total"] = $db->fetch_one_col("SELECT SUM(ac.costo) FROM img_sop_size iss INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
         	$carrito[$key]["comentarios"] = $db->fetch_all("SELECT m.*,CONCAT(u.nombre,' ',u.apellido) AS name FROM mensaje m INNER JOIN user u ON u.id=m.id_user WHERE m.id_carrito=:id",array(":id"=>$value['id']));
         }
@@ -80,7 +95,7 @@ Flight::route('GET /@api/backend/carrito/items', function() {
 Flight::route('GET /@api/backend/carrito/items_descr', function() {
 	global $db;
 	global $user;
-    $carrito = $db->fetch_all("SELECT c.id AS car_id,iss.id,CONCAT(s.name,' ',s.resolucion) as size,sop.name as support, ac.cantidad as cant,i.ruta as image,iss.costo as price FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id INNER JOIN carrito c ON c.id=ac.id_carrito INNER JOIN user u ON u.id=c.id_user WHERE u.id=:id",array(':id' =>$user['id']));
+    $carrito = $db->fetch_all("SELECT c.id AS car_id,iss.id,CONCAT(s.name,' ',s.resolucion) as size,sop.name as support, ac.cantidad as cant,i.ruta as image,iss.costo as price FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id INNER JOIN carrito c ON c.id=ac.id_carrito INNER JOIN user u ON u.id=c.id_user WHERE u.id=:id",array(':id' =>$user['id']));
     responseOk($carrito);
 });
 
@@ -189,17 +204,37 @@ Flight::route('POST /@api/carrito/agregar', function() {
 	global $db;
 	global $user;
 	$cantidad = Flight::request()->data->cantidad;
-	$costo = Flight::request()->data->costo;
+	$carritouser = false;
+	if($cantidad > 10){
+		$cantidad = 10;
+	}
 	$rel = Flight::request()->data->rel;
-	//primero ubikmos el carrito del COMPADRE
-	$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE user = :user",array(":user",$user['id']));
+	//AY PAPA TE JODISTE SI ME INYECTASTE EL HTML
+	$buscarel = $db->fetch_item("SELECT * FROM img_sop_size WHERE id = :rel",array(":rel"=>$rel));
+	$costoreal = 0;
+	if($buscarel){
+		$costoreal = $cantidad * $buscarel["costo"];
+	}
+	else{
+		responseError("No se ubicó la relacion adecuada.","004");
+	}
+	//luego ubikmos el carrito del COMPADRE
+	$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE id_user = :user",array(":user"=>$user['id']));
 	if($carritouser){
 		$carritouser = $carritouser["id"];
 	}
-	if ($db->insert("INSERT INTO articulos_carrito VALUES(:carrito,:cant,:costo,:rel)",array(':carrito'=>$carritouser,':cant'=>$cantidad, ':costo'=>$costo, ':rel'=>$rel))){
+	else{
+		$createcarro = $db->insert("INSERT INTO carrito VALUES(null,:user,1,null)",array(":user"=>$user['id']));
+		$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE user = :user",array(":user"=>$user['id']));
+		$carritouser = $carritouser["id"];
+		if(!$createcarro){
+			responseError("Error al crear carrito","004");
+		}
+	}
+	if ($db->insert("INSERT INTO articulos_carrito VALUES(:carrito,:cant,:costo,:rel)",array(':carrito'=>$carritouser,':cant'=>$cantidad, ':costo'=>$costoreal, ':rel'=>$rel))){
     	responseOk("Registrado!");
 	}else{
-		responseError("Credenciales no válidas.","001");
+		responseError($db->getError() ,"001");
 	}
 });
 

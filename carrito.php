@@ -32,7 +32,7 @@
 
     <div class="row">
       <div class="col-sm-12 baul">
-
+      <div class="container"></div>
         <table id="carrito" class="table table-hover">
           <thead>
             <tr>

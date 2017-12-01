@@ -29,7 +29,7 @@
     
     <div class="container-fluid">
       <div class="row">
-        <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 text-center">
+        <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-center">
           <h4 class="logh">Contáctame</h4>
           <br>
           <form class="contact" id="mensaje" action="catalogo.php" method="post">

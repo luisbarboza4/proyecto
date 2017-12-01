@@ -1,13 +1,23 @@
 $("body").loading();
 $(document).ready(function() {
-
-	$("#addCarrito").on("submit", function(e) {
+	$("#pedido").on("submit", function(e) {
 		e.preventDefault();
+		$("#addCarrito").prop("disabled",true);
+		var datosform = {
+			rel: $(".ilumodal .supp").find(':selected').attr('data-rel'),
+			cantidad: $(".ilumodal .cantidad").val()
+		};
+		console.log(datosform);
 		$.ajax({
 			url: "service/service.php/carrito/agregar",
 			type: "POST",
-			data: $("#pedido").serialize()
+			data: datosform,
+			success: function(data) {
+				$("#addCarrito").prop("disabled",false);
+				$(".ilumodal").modal("hide");
+			}
 		});
+
 	});
 	$(".ilumodal .cantidad:input").bind('keyup mouseup', function() {
 		console.log(parseInt($(this).val()));
@@ -66,7 +76,7 @@ $(document).ready(function() {
 											supports = supports.response;
 											$(".ilumodal .supp").empty();
 											for (var i = 0; i < supports.length; i++) {
-												$(".ilumodal .supp").append("<option data-image=" + supports[i].id_imagen + " value=" + supports[i].costo + ">" + supports[i].name + "</option>");
+												$(".ilumodal .supp").append("<option data-rel=" + supports[i].id + " data-image=" + supports[i].id_imagen + " value=" + supports[i].costo + ">" + supports[i].name + "</option>");
 											}
 										}
 									}
@@ -135,7 +145,7 @@ $(document).ready(function() {
 				}
 				else {
 					$("#modalLogin").submit();
-					location.reload();
+					//location.reload();
 				}
 				$("#cargandoLogin").hide();
 			}

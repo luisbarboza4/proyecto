@@ -1,3 +1,10 @@
+<?php
+  $index = true;
+  include_once("config.php");
+  if(isset($_REQUEST['username'])){
+    include_once("control.php");
+  }
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,29 +32,6 @@
           <a href="catalogo.php"><h4> <span class="glyphicon glyphicon-chevron-left"></span> volver al catalogo</h4></a>
         </div>
     </div>
-
-    <div class="row">
-      <div id="reg-form" class="col-sm-12 text-center">
-        
-        <form class="login" action="catalogo.php" method="post">
-
-          <!-- Despues de verificar que el email y el usuario existen.
-
-          <label for="pass"> Contraseña </label>
-          <br>
-          <input type="password" name="pass" value="" placeholder="contraseña">
-          <br>
-          <label for="pass"> Repita la Contraseña </label>
-          <br>
-          <input type="password" name="pass" value="" placeholder="repita la contraseña">
-          <br><br>
-          <button type="button" name="button" class="btn elim">Restaurar Contraseña</button>
-
-          -->
-
-        </form>
-      </div>
-    </div>
     
     <div class="container-fluid">
       <div class="row">
@@ -62,19 +46,19 @@
             
             <div class="form-group">
               <label for="e_password"> Contrase&ntilde;a Actual</label>
-              <input id="e_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="contraseña actual" required>
+              <input id="e_password" class="form-control input-sm" type="password" name="currentpassword" value="" placeholder="contraseña actual" required>
             </div>
             <br>
             <div class="form-group">
               <label for="ed_password"> Nueva Contrase&ntilde;a </label>
-              <input id="ed_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="nueva contraseña" required>
+              <input id="ed_password" class="form-control input-sm" type="password" name="newpassword" value="" placeholder="nueva contraseña" required>
             </div>
             
              <div class="form-group">
               <label for="ed_password"> Repita la nueva Contrase&ntilde;a </label>
-              <input id="ed_password" class="form-control input-sm" type="password" name="pass" value="" placeholder=" repetir contraseña" required>
+              <input id="ed_password" class="form-control input-sm" type="password" name="r_newpassword" value="" placeholder=" repetir contraseña" required>
             </div>
-            
+            <input style="visibility:hidden" type="text" name="username" value="<?php echo $_SESSION['username']; ?>"/>
             <br>
             <button type="submit" name="button" class="btn elim">Cambiar</button>
           </form>

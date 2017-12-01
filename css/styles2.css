@@ -45,20 +45,20 @@ img:not(.ignore){
 }
 
 .table thead{
-	background-color: #c0e5ef;
+	background-color: #9cd6e6;
 	color: #fff;
 }
 
 .table{
 	text-align: center;
-	border: 3px dashed #c0e5ef;
+	border: 3px dashed #9cd6e6;
 }
 
 .elim{
-	background-color: #c0e5ef;
+	background-color: #9cd6e6;
 	color: #fff;
 	font-size: 12px;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	font-weight: bold;
 }
 
@@ -102,10 +102,10 @@ img:not(.ignore){
 }
 
 .reaCompra{
-	background-color: #c0e5ef;
+	background-color: #9cd6e6;
 	color: #fff;
 	font-size: 15px;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	font-weight: bold;
 }
 
@@ -122,12 +122,12 @@ img:not(.ignore){
 .index-buttons h4{
 	padding: 10px;
 	font-size: 25px;
-	letter-spacing: 7px;
+	letter-spacing: 4px;
 	color: #68b4ff;
 }
 
 .catalogo{
-		background-color: #f6cfd3;
+		background-color: #dca7ad;
     font-family: 'Saira Semi Condensed', sans-serif;
 }
 
@@ -144,7 +144,7 @@ img:not(.ignore){
 	background-color: #c0e5ef;
 	font-family: 'Saira Semi Condensed', sans-serif;
 	color: #68b4ff;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 }
 
 .admin{
@@ -172,20 +172,20 @@ img:not(.ignore){
 
 .images-list{
 	font-family: 'Saira Semi Condensed', sans-serif;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 }
 
 .images-list .btn{
 		color: #fff;
 		font-size: 12px;
-		letter-spacing: 5px;
+		letter-spacing: 3px;
 		font-weight: bold;
 }
 
 .navi{
 	background-color: #f6cfd3;
 	color: #fff;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	border-bottom: 3px solid #c0e5ef;
 }
 
@@ -239,7 +239,6 @@ img:not(.ignore){
 	text-align:center;
 	width: 100%;
 	height: 450px;
-	background-color: lightgrey;
 }
 
 .size, .supp, .cantidad{
@@ -250,7 +249,7 @@ img:not(.ignore){
 
 .configuracion{
 	font-family: 'Saira Semi Condensed', sans-serif;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	background-color: #fcebed;
 }
 
@@ -328,7 +327,7 @@ input[type=text], input[type=password], input[type=email], textarea{
 
 .formini label{
 	font-family: 'Saira Semi Condensed', sans-serif;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	color: #f6cfd3;
 }
 
@@ -342,7 +341,7 @@ input[type=text], input[type=password], input[type=email], textarea{
 #menu{
 	margin-top: 10%;
 	margin-left: 20px;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 }
 
 #menu a{
@@ -357,15 +356,15 @@ input[type=text], input[type=password], input[type=email], textarea{
 
 #menu-carrito{
 	margin-top: 2%;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	color: #fff;
 }
 
 #modalstyle{
 	border-radius: 0px;
-	height: 80%;
-	letter-spacing: 5px;
-	color: #f6cfd3;
+	height: 100%;
+	letter-spacing: 3px;
+	color: #dca7ad;
 	font-weight: normal;
 }
 
@@ -381,7 +380,7 @@ input[type=text], input[type=password], input[type=email], textarea{
 	border: 0px;
 	padding: 5px;
 	font-size: 20px;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	background-color: #fcebed;
 }
 

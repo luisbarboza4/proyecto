@@ -55,19 +55,19 @@
         <div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-0 text-center">
           <h4 class="logh">Por favor, escriba su E-mail y usuario para recuperar su contraseña</h4>
         </div>
-        <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 text-center">
+        <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-center">
           
           <br>
           <form class="login" id="recuperar" action="" method="post">
             
             <div class="form-group">
               <label for="rr_username"> Usuario </label>
-              <input id="rr_username" class="form-control input-sm" type="text" name="username" value="" placeholder="Usuario" required>
+              <input id="rr_username" class="form-control" type="text" name="username" value="" placeholder="Usuario" required>
             </div>
             
             <div class="form-group">
               <label for="rr_email"> E-mail </label>
-              <input id="rr_email" class="form-control input-sm" type="email" name="email" value="" placeholder="tucorreo@ejemplo.com" required>
+              <input id="rr_email" class="form-control" type="email" name="email" value="" placeholder="tucorreo@ejemplo.com" required>
             </div>
            
             <br>
