@@ -2,7 +2,7 @@ $("body").loading();
 $(document).ready(function() {
 	$("#pedido").on("submit", function(e) {
 		e.preventDefault();
-		$("#addCarrito").prop("disabled",true);
+		$("#addCarrito").prop("disabled", true);
 		var datosform = {
 			rel: $(".ilumodal .supp").find(':selected').attr('data-rel'),
 			cantidad: $(".ilumodal .cantidad").val()
@@ -13,8 +13,26 @@ $(document).ready(function() {
 			type: "POST",
 			data: datosform,
 			success: function(data) {
-				$("#addCarrito").prop("disabled",false);
-				$(".ilumodal").modal("hide");
+				$("#addCarrito").prop("disabled", false);
+				var response = JSON.parse(data);
+				if (response.success) {
+					swal({
+						"title": 'Exito!',
+						"text": 'Tu item ha sido agregado al carrito de compras',
+						"type": 'success',
+						"timer": 1500
+					});
+					$("#ilusModal").modal("hide");
+				}
+				else {
+					swal({
+						"title": 'Error',
+						"text": response.message,
+						"type": 'error',
+						"timer": 1500
+					});
+				}
+				console.log(response);
 			}
 		});
 
@@ -35,7 +53,7 @@ $(document).ready(function() {
 			result = result.response;
 			for (var i = 0; i < result.length; i++) {
 				var divitem = $("<div>")
-					.addClass("item col-xs-4");
+					.addClass("item col-xs-12 col-sm-3");
 				var img = $("<img>")
 					//href="#ilusModal" data-toggle="modal" data-target="#ilusModal"
 					.attr({

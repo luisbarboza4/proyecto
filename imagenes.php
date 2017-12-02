@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
@@ -98,7 +99,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-offset-1 col-xs-10">
+				<div class="col-md-offset-1 col-xs-offset-0 col-xs-12 col-md-10">
 					<table id="table-cost" class="table" style="display:none;">
 						<thead>
 							<tr>

@@ -1,7 +1,6 @@
 <?php
   $index = true;
   include_once("config.php");
-  include_once("modals.php");
   if(isset($_REQUEST['username'])){
     include_once("control.php");
   }
@@ -44,6 +43,7 @@
             </div>
       </div>
     </div>
+    <?php include_once("modals.php"); ?>
     <script type="text/javascript">
       $(document).ready(function(){
         

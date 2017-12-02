@@ -11,7 +11,8 @@ $(document).ready(function () {
     $("[data-toggle]").click(clearModal);
     function showModal(result) {
         clearModal();
-        $("#status option[value='"+result.active+"']").prop("selected",true);
+        $("#status").text(getStatusString(result.active));
+        //$("#status option[value='"+result.active+"']").prop("selected",true);
         $(result.items).each(function (i, e) {
             $("#lista-art #artc tbody").append(
                 $('<tr>').append(
@@ -22,15 +23,7 @@ $(document).ready(function () {
                     $('<td>').text(e.soporte))
                     .append(
                     $('<td>').text(e.cantidad))
-                    .append(
-                    $('<td>')
-                        .data('src-image', e.ruta)
-                        .append("<span class='glyphicon glyphicon-picture'></span>")
-                        .click(function () {
-                            window.open($(this).data("src-image"));
-                        })
-
-                    )
+                   
             )
         })
         $(result.comentarios).each(function (i, e) {
@@ -58,7 +51,7 @@ $(document).ready(function () {
             $('#lista tbody tr').show();
         } else {
             $('#lista tbody tr').each(function (i, e) {
-                var td = $(e).find('td')[2];
+                var td = $(e).find('td')[1];
                 if ($(td).html().toUpperCase().indexOf(filter) > -1) {
                     $(e).show();
                 } else {
@@ -78,54 +71,19 @@ $(document).ready(function () {
             }
         })
     }
-    $("#save-modal").click(function () {
-        $('#myModal').modal('hide');
-        $('html').loading();
-        $.ajax({
-            url: "service/service.php/backend/carrito/items",
-            type: "POST",
-            data: {
-                id: $("#id_modal").val(),
-                status: $("#status").val(),
-                message: $("#comentario").val()
-            },
-            success: function (data) {
-                $('html').loading("stop");
-                search()
-            }
-        });
-    })
     function search() {
         $('html').loading();
         $.ajax({
-            url: "service/service.php/backend/carrito/items",
+            url: "service/service.php/backend/viewcars",
             type: "GET",
             success: function (data) {
                 $('html').loading("stop");
                 var result = JSON.parse(data);
                 $("#lista tbody").empty()
                 $(result.response).each(function (i, e) {
-                    var status = "";
-                    switch(e.active){
-                        case '0':
-                            status = "Pendiente";
-                            break;
-                        case '1':
-                            status = "Listo";
-                            break;
-                        case '3':
-                            status = "Aceptado";
-                            break;
-                        case '4':
-                            status = "Cancelado";
-                            break;
-                    }
+                    var status = getStatusString(e.active);
                     $("#lista tbody").append(
-                        $('<tr>').append(
-                            $('<td>').text(e.nombre + " " + e.apellido))
-                            .append(
-                            $('<td>').text(e.email)
-                            .css({"word-break":"break-word"}))
+                        $('<tr>')
                             .append(
                             $('<td>').text(e.fecha))
                             .append(
@@ -146,3 +104,20 @@ $(document).ready(function () {
         $('html').loading();
     })
 });
+
+function getStatusString(statusCode) {
+    switch (statusCode) {
+        case '0':
+            return "Pendiente";
+            break;
+        case '1':
+            return "Listo";
+            break;
+        case '3':
+            return "Aceptado";
+            break;
+        case '4':
+            return "Cancelado";
+            break;
+    }
+}

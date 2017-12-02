@@ -17,7 +17,6 @@
           <div class="col-md-6">
               <h4>Nombre ilustraci&oacute;n</h4>
               <h5 class="name">Impresi&oacute;n</h5>
-              <br><br>
               <!-- Formulario de Pedido -->
               <form id="pedido" class="pedido" action="catalogo.html" method="post">
                 <label for="size">Tama&ntilde;o</label>
@@ -42,10 +41,21 @@
                 <br>
                 <input class="cantidad" type="number" name="cantidad" value="" min="1" max="10">
                 <br><br><br>
+                <label for="comment">Comentario</label>
+                <textarea  name="comment" class="comment" cols="3" rows="56"></textarea>
                 <!-- Traerse el cálculo del precio según la cantidad -->
                 <h4><span id="precio">Precio</span>BsF + envio</h4>
                 <br>
-                <button id="addCarrito" type="submit" name="submit">agregar al Carrito</button>
+                <?php
+                global $user;
+                if(isset($user)){
+                  echo '<button id="addCarrito" type="submit" name="submit">agregar al Carrito</button>';
+                }
+                else{
+                  echo "<p>Debes iniciar sesi&oacuten para agregar al carrito <p>";
+                }
+                ?>
+
               </form>
           </div>
         </div>

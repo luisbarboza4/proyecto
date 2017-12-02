@@ -83,10 +83,22 @@ Flight::route('POST /@api/session/register', function() {
 //get
 Flight::route('GET /@api/backend/carrito/items', function() {
 	global $db;
-        $carrito = $db->fetch_all("SELECT DATE_FORMAT(c.fecha,'%d/%m/%Y') AS fecha,u.nombre,u.apellido,c.id,c.active FROM carrito c INNER JOIN user u ON u.id=c.id_user WHERE c.active!=2");
+        $carrito = $db->fetch_all("SELECT DATE_FORMAT(c.fecha,'%d/%m/%Y') AS fecha,u.nombre,u.apellido,u.email,c.id,c.active FROM carrito c INNER JOIN user u ON u.id=c.id_user WHERE c.active!=2");
         foreach ($carrito as $key => $value) {
             $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta,iss.costo FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
-            $carrito[$key]["total"] = $db->fetch_one_col("SELECT SUM(ac.costo) FROM img_sop_size iss INNER JOIN articulos_carrito ac ON ac.id_img_tam=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
+            $carrito[$key]["total"] = $db->fetch_one_col("SELECT SUM(ac.costo) FROM img_sop_size iss INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
+        	$carrito[$key]["comentarios"] = $db->fetch_all("SELECT m.*,CONCAT(u.nombre,' ',u.apellido) AS name FROM mensaje m INNER JOIN user u ON u.id=m.id_user WHERE m.id_carrito=:id",array(":id"=>$value['id']));
+        }
+        responseOk($carrito);
+});
+
+Flight::route('GET /@api/backend/viewcars', function() {
+	global $db;
+	global $user;
+        $carrito = $db->fetch_all("SELECT DATE_FORMAT(c.fecha,'%d/%m/%Y') AS fecha,u.nombre,u.apellido,c.id,c.active FROM carrito c INNER JOIN user u ON u.id=c.id_user WHERE u.id=:id AND c.active!=2",array(":id"=>$user['id']));
+        foreach ($carrito as $key => $value) {
+            $carrito[$key]["items"] = $db->fetch_all("SELECT i.name as imagen,CONCAT(s.name,' ',s.resolucion) as size,sop.name as soporte, ac.cantidad,i.ruta,iss.costo FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
+            $carrito[$key]["total"] = $db->fetch_one_col("SELECT SUM(ac.costo) FROM img_sop_size iss INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id WHERE ac.id_carrito=:id",array(':id' =>$value['id']));
         	$carrito[$key]["comentarios"] = $db->fetch_all("SELECT m.*,CONCAT(u.nombre,' ',u.apellido) AS name FROM mensaje m INNER JOIN user u ON u.id=m.id_user WHERE m.id_carrito=:id",array(":id"=>$value['id']));
         }
         responseOk($carrito);
@@ -95,8 +107,35 @@ Flight::route('GET /@api/backend/carrito/items', function() {
 Flight::route('GET /@api/backend/carrito/items_descr', function() {
 	global $db;
 	global $user;
-    $carrito = $db->fetch_all("SELECT c.id AS car_id,iss.id,CONCAT(s.name,' ',s.resolucion) as size,sop.name as support, ac.cantidad as cant,i.ruta as image,iss.costo as price FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id INNER JOIN carrito c ON c.id=ac.id_carrito INNER JOIN user u ON u.id=c.id_user WHERE u.id=:id",array(':id' =>$user['id']));
+    $carrito = $db->fetch_all("SELECT c.id as car,ac.id,CONCAT(s.name,' ',s.resolucion) as size,sop.name as support, ac.cantidad as cant,i.ruta as image,iss.costo as price FROM imagenes i INNER JOIN img_sop_size iss ON i.id=iss.id_imagen INNER JOIN soporte sop ON sop.id=iss.id_soporte INNER JOIN size s ON s.id=iss.id_size INNER JOIN articulos_carrito ac ON ac.id_img_sop=iss.id INNER JOIN carrito c ON c.id=ac.id_carrito INNER JOIN user u ON u.id=c.id_user WHERE u.id=:id AND c.active=2",array(':id' =>$user['id']));
     responseOk($carrito);
+});
+
+//Datos perfil
+Flight::route('POST /@api/session/perfil', function() {
+	global $db;
+	$username = Flight::request()->data->username;
+    $infouser = $db->fetch_item("SELECT * FROM user WHERE username=:username",array(':username' =>$username));
+    if($infouser){
+    	responseOk($infouser);
+    } else {
+    	responseError("Error en consulta!","002");
+    }
+});
+
+//Actualizar datos perfil
+Flight::route('POST /@api/session/perfil/editar', function() {
+	global $db;
+	$username = Flight::request()->data->username;
+	$nombre = Flight::request()->data->nombre;
+	$apellido = Flight::request()->data->apellido;
+	$email = Flight::request()->data->email;
+    $update = $db->update("UPDATE user SET nombre=:nombre, apellido=:apellido, email=:email  WHERE username=:username",array(':username' =>$username, ':nombre' =>$nombre, ':apellido' =>$apellido, ':email' =>$email));
+    if($update){
+    	responseOk("Datos actualizados con exito!");
+    } else {
+    	responseError("Debe tener una sesión iniciada para efectuar esta operación.","002");
+    }
 });
 
 //update
@@ -109,6 +148,7 @@ Flight::route('POST /@api/backend/carrito/items', function() {
 		if($message!=""){
 			$db->update("INSERT mensaje SET id_carrito=:id,mensaje=:msj,id_user=:user",array(":msj"=>$message,":id"=>$id,":user"=>$user['id']));
 		}
+		
         if($db->update("UPDATE carrito SET active=:active WHERE id=:id",array(":active"=>$status,":id"=>$id))){
         	responseOk("");
         }else{
@@ -144,7 +184,7 @@ Flight::route('POST /@api/backend/config', function() {
 //obtener todas las imagenes (sólo datos de la tabla)
 Flight::route('GET /@api/images/', function() {
 	global $db;
-	$images = $db->fetch_all("SELECT * FROM imagenes");
+	$images = $db->fetch_all("SELECT * FROM imagenes WHERE mostrar=1");
 	if ($images){
 		responseOk($images);
 	}else{
@@ -207,6 +247,8 @@ Flight::route('POST /@api/carrito/agregar', function() {
 	$carritouser = false;
 	if($cantidad > 10){
 		$cantidad = 10;
+	}elseif($cantidad < 1){
+		responseError("Cantidad no válida!","004");
 	}
 	$rel = Flight::request()->data->rel;
 	//AY PAPA TE JODISTE SI ME INYECTASTE EL HTML
@@ -219,25 +261,35 @@ Flight::route('POST /@api/carrito/agregar', function() {
 		responseError("No se ubicó la relacion adecuada.","004");
 	}
 	//luego ubikmos el carrito del COMPADRE
-	$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE id_user = :user",array(":user"=>$user['id']));
+	$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE id_user = :user AND active=2",array(":user"=>$user['id']));
 	if($carritouser){
 		$carritouser = $carritouser["id"];
 	}
 	else{
-		$createcarro = $db->insert("INSERT INTO carrito VALUES(null,:user,1,null)",array(":user"=>$user['id']));
-		$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE user = :user",array(":user"=>$user['id']));
-		$carritouser = $carritouser["id"];
+		$createcarro = $db->insert("INSERT INTO carrito VALUES(null,:user,2,null)",array(":user"=>$user['id']));
+		$carritouser = $createcarro;
 		if(!$createcarro){
-			responseError("Error al crear carrito","004");
+			responseError("Error al crear carrito.","004");
 		}
 	}
-	if ($db->insert("INSERT INTO articulos_carrito VALUES(:carrito,:cant,:costo,:rel)",array(':carrito'=>$carritouser,':cant'=>$cantidad, ':costo'=>$costoreal, ':rel'=>$rel))){
+	$db->insert("INSERT INTO articulos_carrito VALUES(:carrito,:cant,:costo,:rel,null)",array(':carrito'=>$carritouser,':cant'=>$cantidad, ':costo'=>$costoreal, ':rel'=>$rel));
+    $error = $db->getError();
+    if($error){
     	responseOk("Registrado!");
 	}else{
 		responseError($db->getError() ,"001");
 	}
 });
 
+Flight::route('POST /@api/backend/carrito/delete_item', function() {
+		global $db;
+		$id = Flight::request()->data->id;
+        if($db->delete("DELETE FROM articulos_carrito WHERE id=:id",array(":id"=>$id))){
+        	responseOk("");
+        }else{
+        	responseError("Error en query","");
+        }
+});
 
 Flight::start();
 ?>

@@ -1,5 +1,4 @@
 <?php
-  $index = true;
   include_once("config.php");
   if(isset($_REQUEST['username'])){
     include_once("control.php");

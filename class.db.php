@@ -55,8 +55,16 @@ class SQL{
         }
     }
     public function insert($sql, $param=array()){
+        global $db;
         if($this->query($sql,$param)){
-            return (int)$this->link->lastInsertId();
+            
+            $id = (int)$this->link->lastInsertId();
+            $error = $db->getError();
+            if($id){
+                return $id;
+            } else if($error[0] == "0000"){
+                return true;
+            }
         }
         return 0;
     }

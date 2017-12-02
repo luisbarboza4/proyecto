@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
@@ -29,7 +30,7 @@
     ?>
         <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>">
         <div class="row">
-        <div class="col-xs-offset-2 col-xs-8">
+        <div class="col-md-offset-2 col-md-8 col-xs-12 col-sm-10 col-sm-offset-1">
                 <div class="form-horizontal">
                     <div class="panel panel-default">
                         <div class="panel-heading"><center><strong><?php echo @$_GET['type']=='size' ? "Tamaño" : "Soporte"; ?></strong></center></div>
@@ -46,7 +47,7 @@
                           <br>
                           <div class="form-group" style="text-align: center;">
                             <div id="lista">
-                                <table class="table">
+                                <table class="table table-condensed">
                                     <thead>
                                     <tr>
                                         <th>

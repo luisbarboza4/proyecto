@@ -1,3 +1,6 @@
+<?php
+  include_once("config.php");
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,33 +35,23 @@
         <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-5 text-center">
           <h4 class="logh">Actualizar Información</h4>
           <br>
-          <form class="editar" id="edit" action="catalogo.php" method="post">
+          <form class="editar" id="perfil" action="" method="post">
             
             <div class="form-group">
-              <label for="e_nombre"> Nombre </label>
-              <input id="e_nombre" class="form-control input-sm" type="text" name="nombre" value="" placeholder="Nombre" required>
+              <label for="p_nombre"> Nombre </label>
+              <input id="p_nombre" class="form-control input-sm" type="text" name="nombre" value="" placeholder="Nombre" required>
             </div>
             
             <div class="form-group">
-              <label for="e_apellido"> Apellido </label>
-              <input id="e_apellido" class="form-control input-sm" type="text" name="apellido" value="" placeholder="Apellido" required>
+              <label for="p_apellido"> Apellido </label>
+              <input id="p_apellido" class="form-control input-sm" type="text" name="apellido" value="" placeholder="Apellido" required>
             </div>
             
             <div class="form-group">
-              <label for="e_email"> E-mail </label>
-              <input id="e_email" class="form-control input-sm" type="email" name="email" value="" placeholder="ejemplo@ejemplo.com" required>
+              <label for="p_email"> E-mail </label>
+              <input id="p_email" class="form-control input-sm" type="email" name="email" value="" placeholder="tucorreo@correo.com" required>
             </div>
-            
-            <div class="form-group">
-              <label for="e_usuario"> Usuario </label>
-              <input id="e_usuario" class="form-control input-sm" type="text" name="username" value="" placeholder="usuario" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="e_password"> Contrase&ntilde;a </label>
-              <input id="e_password" class="form-control input-sm" type="password" name="pass" value="" placeholder="contraseña" disabled>
-            </div>
-            
+            <input style="position:absolute;visibility:hidden" type="text" name="username" value="<?php echo $_SESSION['username']; ?>"/>
             <a href="cambiar.php" target="_blank" class="change">Cambiar Contrase&ntilde;a</a>
             <br><br><br>
             <button type="submit" name="button" class="btn elim">Actualizar</button>
@@ -68,4 +61,5 @@
     </div>
 
   </body>
+  <script type="text/javascript" src="js/perfil.js"></script>
 </html>

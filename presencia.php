@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
   	<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
@@ -22,7 +23,7 @@
     <div class="row">
       <div class="col-xs-12 text-center intro">
         <div class="row">
-          <div class="col-xs-offset-4 col-xs-4">
+          <div class="col-xs-offset-3 col-xs-6">
             <div src="img/user.jpg" class="img-profile img-responsive img-circle"></div>
           </div>
         </div>

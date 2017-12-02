@@ -173,7 +173,6 @@ $(document).ready(function(){
 		viewtable();
 	}
 	function deletebyid(id){
-    	var pag = $("#pag").val();
     	$('html').loading();
     	$.ajax({
     	    url: "ajax/saveimages.php?type=del",

@@ -26,7 +26,6 @@
           <a href="catalogo.php"><h4> <span class="glyphicon glyphicon-chevron-left"></span> volver al catalogo</h4></a>
         </div>
     </div>
-    
     <div class="container-fluid">
       <div class="row">
         <div id="reg-form" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 text-center">
@@ -55,6 +54,5 @@
         </div>
       </div>
     </div>
-
   </body>
 </html>

@@ -1,51 +1,57 @@
 <?php
-	include_once("config.php");
-	if(isset($user) && $user['type']!='Admin'){
-	    redirect("index.php");
-	}
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="css/loading.css">
-    <link rel="stylesheet" type="text/css" href="css/styles2.css">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/sweetalert.js"></script>
-    <script src="js/loading.js"></script>
-    <meta charset="utf-8">
-    <title>Configuracion - Pedidos</title>
-</head>
-<body class="admin">
-    <?php
-        include_once("navbar.php");
-    ?>
+  include_once("config.php");
+ ?>
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css" href="js/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" type="text/css" href="css/loading.css">
+        <link rel="stylesheet" type="text/css" href="css/styles2.css">
+        <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Saira+Semi+Condensed" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/sweetalert.js"></script>
+        <script src="js/loading.js"></script>
+        <meta charset="utf-8">
+        <title>TSUKUYOMI STORE | CARRITO</title>
+    </head>
+
+    <body class="catalogo">
+
         <div class="row">
-        <div class="col-md-offset-2 col-md-8 col-xs-12 col-sm-10 col-sm-offset-1">
-                <div class="form-horizontal">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><center><strong>Pedidos</center></div>
+
+            <div id="menu-carrito" class="col-sm-12 text-center">
+                <a href="catalogo.php">
+                    <h4> <span class="glyphicon glyphicon-chevron-left"></span> volver al catalogo</h4>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 baul">
+                <div class="container"></div>
+                <div class="row">
+                    <div class="col-xs-offset-0 col-xs-12 col-sm-12 col-md-offset-1 col-md-10">
+                        <div class="form-horizontal">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <center><strong>Pedidos</center></div>
                         <input type="hidden" id="pag" value="<?php echo @$_GET['type'];?>">
                         <div class="panel-body">
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-1 col-xs-offset-0 col-xs-1">
-                                    <label for="buscar" class="control-label">Buscar:</label>
-                                </div>
-                                <div class="col-xs-5">
-                                    <input  type="text" maxlength="30" name="buscar" id="buscar" class="form-control" placeholder="busqueda por nombre"/>
-                                </div>
-                                <div class="col-xs-1">
+                                <div class="col-xs-12 col-sm-1">
                                     <label for="status_select" class="control-label">Status:</label>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-12 col-sm-5 col-md-3">
                                     <select id="status_select" class="form-control input-xs supp">
                                         <option value="">Todos</option>
                                         <option value="Pendiente">Pendiente</option>
@@ -58,15 +64,9 @@
                           <br>
                           <div class="form-group" style="text-align: center;">
                             <div id="lista">
-                                <table class="table table-condensed">
+                                <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>
-                                            Cliente
-                                        </th>
-                                        <th>
-                                            Email
-                                        </th>
                                         <th>
                                             Fecha
                                         </th>
@@ -88,10 +88,9 @@
               </div>
           </div>
       </div>
-      <?php
-  include("footer.php");
-  ?>
-  <div id="myModal" class="modal fade" role="dialog">
+      </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -103,13 +102,7 @@
             <div class="row">
                 <div class="col-xs-offset-1 col-xs-10">
                     <div id="lista-art">
-                        <label for="name_modal">Status:</label>
-                        <select class="form-control" id="status">
-                            <option value="0">Pendiente</option>
-                            <option value="1">Listo</option>
-                            <option value="4">Cancelado</option>
-                            <option value="3">Aceptado</option>
-                        </select>
+                        <label for="name_modal">Status: <span id="status"></span></label>
                         <table id="artc" class="table">
                             <thead>
                                 <tr>
@@ -125,9 +118,6 @@
                                     <th>
                                         Cantidad
                                     </th>
-                                    <th>
-                                        Ver
-                                    </th>
 
                                 </tr>
                             </thead>
@@ -142,17 +132,15 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <textarea id="comentario" name="comentario" style="width:100%"></textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-             <button type="button" class="btn btn-primary" id="save-modal">Aceptar</button>
              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
          </div>
      </div>
  </div>
 </div>
-<script type="text/javascript" src="js/pedidos.js"></script>
-</body>
+  <script src="js/viewcars.js"></script>
+  </body>
 </html>
