@@ -40,9 +40,17 @@
                 <label for="cantidad">Cantidad</label>
                 <br>
                 <input class="cantidad" type="number" name="cantidad" value="" min="1" max="10">
+                <br><br>
+                <div align="center" class="row">
+  								<div class="col-xs-2">
+  									<span style="margin-right: 2px;" id="numberlike">0 </span><span id="thumbsup" class="glyphicon glyphicon-thumbs-up"></span>
+  								</div>
+  								<div class="col-xs-2">
+  									<span style="margin-right: 2px;" id="numberdislike">0 </span><span id="thumbsdown" class="glyphicon glyphicon-thumbs-down"></span>
+  								</div>
+  								<input id="id_img_m" style="display:none" type="text" value=""/>
+							  </div>
                 <br><br><br>
-                <label for="comment">Comentario</label>
-                <textarea  name="comment" class="comment" cols="3" rows="56"></textarea>
                 <!-- Traerse el cálculo del precio según la cantidad -->
                 <h4><span id="precio">Precio</span>BsF + envio</h4>
                 <br>

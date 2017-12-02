@@ -1,5 +1,59 @@
 $("body").loading();
 $(document).ready(function() {
+	
+	$('#thumbsup').on("click", function(e) {
+	    console.log("votandini");
+		$.ajax({
+			url: "service/service.php/images/voto",
+			data: {
+				"idimg" : $('#id_img_m').val(),
+				"voto" : "GOOD"
+			} ,
+			type: "POST",
+			success: function(data) {
+				var data = JSON.parse(data);
+				console.log(data);
+				if(data.success){
+					$('#thumbsup').addClass('liked');
+					$('#thumbsdown').removeClass('liked');
+					console.log("finally");			
+				} else {
+					$('#thumbsup').removeClass('liked');
+					$('#thumbsdown').removeClass('liked');
+					console.log("rip");
+				}
+				
+				}
+			
+		})	  
+	});
+
+	$('#thumbsdown').on("click", function(e) {
+	    console.log("votandini");
+		$.ajax({
+			url: "service/service.php/images/voto",
+			data: {
+				"idimg" : $('#id_img_m').val(),
+				"voto" : "BAD"
+			} ,
+			type: "POST",
+			success: function(data) {
+				var data = JSON.parse(data);
+				if(data.success){
+					$('#thumbsdown').addClass('liked');
+					$('#thumbsup').removeClass('liked');
+					console.log("finally");			
+				} else {
+					$('#thumbsup').removeClass('liked');
+					$('#thumbsdown').removeClass('liked');
+					console.log("rip");
+				}
+				
+				}
+			
+		})	  
+	});
+	
 	$("#pedido").on("submit", function(e) {
 		e.preventDefault();
 		$("#addCarrito").prop("disabled", true);
@@ -7,7 +61,6 @@ $(document).ready(function() {
 			rel: $(".ilumodal .supp").find(':selected').attr('data-rel'),
 			cantidad: $(".ilumodal .cantidad").val()
 		};
-		console.log(datosform);
 		$.ajax({
 			url: "service/service.php/carrito/agregar",
 			type: "POST",
@@ -32,16 +85,26 @@ $(document).ready(function() {
 						"timer": 1500
 					});
 				}
-				console.log(response);
 			}
 		});
-
 	});
 	$(".ilumodal .cantidad:input").bind('keyup mouseup', function() {
-		console.log(parseInt($(this).val()));
-		if (parseInt($(this).val()) <= 10) {
-			console.log("mardicion");
-			$(".ilumodal #precio").text(parseInt($(this).val()) * parseInt($(".ilumodal .supp").val()));
+		console.log(Number($(this).val()));
+		
+		var number = Number($(this).val());
+		if(!isNaN(number) && $(this).val() != ""){
+			if(number > 10) number = 10;
+			if(number < 1) number = 1;
+			number =parseInt(number);
+			$(this).val(number);
+		}
+		if (number <= 10) {
+			$(".ilumodal #precio").text(parseInt(number) * Number($(".ilumodal .supp").val()));
+		}else{
+			$(".ilumodal #precio").text("0");
+		}
+		if(Number($(this).val()) < 1){
+			$(".ilumodal #precio").text("0");
 		}
 	});
 	$.ajax({
@@ -53,7 +116,7 @@ $(document).ready(function() {
 			result = result.response;
 			for (var i = 0; i < result.length; i++) {
 				var divitem = $("<div>")
-					.addClass("item col-xs-12 col-sm-3");
+					.addClass("item col-xs-12 col-sm-3 col-centered");
 				var img = $("<img>")
 					//href="#ilusModal" data-toggle="modal" data-target="#ilusModal"
 					.attr({
@@ -70,9 +133,12 @@ $(document).ready(function() {
 					})
 					.on('click', function() {
 						$(".ilumodal .cantidad").prop("disabled", true);
+						$('.cantidad').val("");
+						$('#precio').text("Precio");
 						$(".ilumodal .name").html($(this).attr("data-name"));
 						$(".ilumodal .illus").attr("src", $(this).attr("src"));
 						var idimagen = $(this).attr("data-id");
+						$('#id_img_m').val(idimagen);
 						console.log("idimagen: " + idimagen);
 						$(".ilumodal .size")
 							.prop("disabled", true)
@@ -111,7 +177,7 @@ $(document).ready(function() {
 								if (result.success) {
 									result = result.response;
 									for (var i = 0; i < result.length; i++) {
-										var sizeid = result[i].id_size
+										var sizeid = result[i].id_size;
 										$.ajax({
 											url: "service/service.php/size",
 											type: "POST",
@@ -140,6 +206,39 @@ $(document).ready(function() {
 								}
 							}
 						})
+						$.ajax({
+							url: "service/service.php/images/",
+							type: "GET",
+							success: function(data) {
+								var data = JSON.parse(data);
+								
+								if(data.success){
+									data.response.some(function(img){
+										if(img.id == idimagen){
+											console.log(img);
+											$('#numberlike').html(img.likes == null ? 0 : img.likes);
+											$('#numberdislike').html(img.dislikes == null ? 0 : img.dislikes);
+											
+											if(!img.user_select){
+												$('#thumbsup').removeClass('liked');
+												$('#thumbsdown').removeClass('liked');
+											} else {
+												if(img.user_select == "GOOD"){
+													$('#thumbsup').addClass('liked');
+													$('#thumbsdown').removeClass('liked');
+												} else {
+													$('#thumbsdown').addClass('liked');
+													$('#thumbsup').removeClass('liked');
+												}
+											}
+											
+											return true;
+										}
+									});
+								}
+							}
+						})
+						
 					});
 				divitem.append(img);
 				$(".row.catalogo").append(divitem);
@@ -160,8 +259,7 @@ $(document).ready(function() {
 				if (!result.success) {
 					$('#mensajeError').show();
 					$('#mensajeError').html(result.message);
-				}
-				else {
+				} else {
 					$("#modalLogin").submit();
 					//location.reload();
 				}

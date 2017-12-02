@@ -172,7 +172,7 @@ img:not(.ignore){
 }
 
 .panel-footer{
-	background-color: #f6cfd3;
+	background-color: #dca7ad;
 }
 
 .images-list{
@@ -188,15 +188,15 @@ img:not(.ignore){
 }
 
 .navi{
-	background-color: #f6cfd3;
+	background-color: #dca7ad;
 	color: #fff;
 	letter-spacing: 3px;
-	border-bottom: 3px solid #c0e5ef;
+	border-bottom: 3px solid #9cd6e6;
 }
 
 .admin input[type=text],.admin input[type=password],.admin textarea{
 	border: 0;
-	background-color: #f6cfd3;
+	background-color: #dca7ad;
 	width: 50%;
 	height: 5%;
 	text-align: center;
@@ -205,7 +205,7 @@ img:not(.ignore){
 
 .admin textarea{
 	border: 0;
-	background-color: #f6cfd3;
+	background-color: #dca7ad;
 	width: 50%;
 	height: 5%;
 	text-align: center;
@@ -472,6 +472,7 @@ img.illus{
     border: 20px solid #ffffff;
     background-color: white;
     opacity: 0;
+    cursor:pointer;
 }
 
 .catalogo .item img{
@@ -684,12 +685,23 @@ svg:nth-of-type(10) ellipse {
 #carrito td{
 	vertical-align: middle;
 }
-@media (max-width: 600px) {
-  *{
-    font-size: 8px!important;
-  }
-  .form-control{
-  	height:auto;
-  }
-  }
+
+#thumbsup, #thumbsdown {
+	cursor:pointer;
+}
+
+.liked {
+  color: dodgerblue;
+}
+
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    text-align: center;
 }

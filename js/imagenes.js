@@ -245,11 +245,12 @@ $(document).ready(function(){
     }
 	function showModal(result) {
 		clearModal();
+		console.log(result);
 	    $("#id_imagen").val(result.id);
 	    $("#name_img").val(result.name);
 	    $("#public_img").prop("checked",result.mostrar == 1 ? true : false);
-	    $("#numberlike").val(result.like+" ");
-	    $("#numberdislike").val(result.dislike+" ");
+	    $("#numberlike").text(result.likes+" ");
+	    $("#numberdislike").text(result.dislikes+" ");
 	    $("#image-show").attr("src",result.ruta);
 	    $(result.costo).each(function(i,e){
 	        add_costo(e.costo,e.id_size,e.id_soporte,e.id);

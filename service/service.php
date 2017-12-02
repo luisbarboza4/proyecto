@@ -183,8 +183,13 @@ Flight::route('POST /@api/backend/config', function() {
 ////rutas de imagenes
 //obtener todas las imagenes (sólo datos de la tabla)
 Flight::route('GET /@api/images/', function() {
-	global $db;
+	global $db,$user;
 	$images = $db->fetch_all("SELECT * FROM imagenes WHERE mostrar=1");
+	foreach($images as $key=>$value){
+		$images[$key]['user_select'] = $db->fetch_one_col("SELECT voto FROM votos WHERE id_imagen:id AND id_user=:user",array(":user"=>@$user['id'],":id",$value['id']));
+    	$images[$key]['likes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto AND id_imagen=:id",array(":voto"=>"GOOD",":id",$value['id']));
+    	$images[$key]['dislikes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto AND id_imagen=:id",array(":voto"=>"BAD",":id",$value['id']));
+    }
 	if ($images){
 		responseOk($images);
 	}else{
@@ -196,7 +201,7 @@ Flight::route('GET /@api/images/', function() {
 Flight::route('POST /@api/size/', function() {
 	global $db;
 	$id = Flight::request()->data->id;
-	$images = $db->fetch_item("SELECT * FROM size WHERE id = :id",array(":id"=>$id));
+	$images = $db->fetch_item("SELECT * FROM size WHERE id = :id GROUP BY name",array(":id"=>$id));
 	if ($images){
 		responseOk($images);
 	}else{
@@ -220,7 +225,7 @@ Flight::route('POST /@api/soporte/', function() {
 Flight::route('POST /@api/images/rel/', function() {
 	global $db;
 	$id = Flight::request()->data->id;
-	$images = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_imagen = :id", array(":id"=>$id));
+	$images = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_imagen = :id GROUP BY id_size", array(":id"=>$id));
 	if ($images){
 		responseOk($images);
 	}else{
@@ -272,12 +277,37 @@ Flight::route('POST /@api/carrito/agregar', function() {
 			responseError("Error al crear carrito.","004");
 		}
 	}
+	//luego verificamos que el articulo no este repetido
+	$carritouser = $db->fetch_item("SELECT * FROM carrito WHERE id_user = :user AND active=2",array(":user"=>$user['id']));
+	if($carritouser){
+		$carritouser = $carritouser["id"];
+	}
+	$relexistente = $db->fetch_item("SELECT * FROM articulos_carrito WHERE id_carrito = :carrito AND id_img_sop = :rel", array(':carrito'=>$carritouser,':rel'=>$rel));
+	$sumatoria = 0;
+	if($relexistente){
+		$sumatoria = (int)$relexistente["cantidad"] + (int)$cantidad;
+		$error = false;
+		if($sumatoria > 10){
+			//$sumatoria = 10;
+			$error = true;
+		}else{
+			$costoreal = (int)$buscarel["costo"] + (int)$sumatoria;
+			$act = $db->update("UPDATE articulos_carrito SET cantidad = :sumatoria , costo = :costoreal WHERE id_carrito = :carrito",array(':sumatoria'=>$sumatoria,':costoreal'=>$costoreal,':carrito'=>$carritouser));
+		}
+		if($act !== false && !$error){
+			responseOk("Registrado!");
+		}else{
+			$meesage = $error ? "ERROR!. Valor excede el maximo permitido por compra" : $db->getError() ;
+			responseError($meesage ,"001");
+		}
+	}else{
 	$db->insert("INSERT INTO articulos_carrito VALUES(:carrito,:cant,:costo,:rel,null)",array(':carrito'=>$carritouser,':cant'=>$cantidad, ':costo'=>$costoreal, ':rel'=>$rel));
     $error = $db->getError();
     if($error){
     	responseOk("Registrado!");
 	}else{
-		responseError($db->getError() ,"001");
+		responseError("Valor excede el maximo posible" ,"001");
+	}
 	}
 });
 
@@ -289,6 +319,20 @@ Flight::route('POST /@api/backend/carrito/delete_item', function() {
         }else{
         	responseError("Error en query","");
         }
+});
+
+Flight::route('POST /@api/images/voto', function() {
+	global $db;
+	global $user;
+	$id = Flight::request()->data->id;
+	$idimg = Flight::request()->data->idimg;
+	$voto = Flight::request()->data->voto;
+	$insert = $db->insert("INSERT INTO votos VALUES (:idimg, :id, :voto)  ON DUPLICATE KEY UPDATE voto = :voto", array(":id"=>$user['id'], ":idimg"=>$idimg, ":voto"=>$voto));
+	if ($insert){
+		responseOk("Voto agregado");
+	}else{
+		responseError("INSERT INTO votos VALUES ({$idimg}, {$user['id']}, {$voto})  ON DUPLICATE KEY UPDATE voto = {$voto}","");
+	}
 });
 
 Flight::start();

@@ -6,8 +6,8 @@
         $result = $db->fetch_all("SELECT * FROM imagenes");
         foreach($result as $key=>$value){
             $result[$key]['costo'] = $db->fetch_all("SELECT * FROM img_sop_size WHERE id_imagen=:imagen",array(":imagen"=>$value['id']));
-            $result[$key]['likes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto",array(":voto"=>"GOOD"));
-            $result[$key]['dislikes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto",array(":voto"=>"BAD"));
+            $result[$key]['likes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto AND id_imagen=:id",array(":voto"=>"GOOD",":id"=>$value['id']));
+            $result[$key]['dislikes'] = $db->fetch_one_col("SELECT count(*) FROM votos WHERE voto=:voto AND id_imagen=:id",array(":voto"=>"BAD",":id"=>$value['id']));
         }
         die(json_encode($result));
     case "post":

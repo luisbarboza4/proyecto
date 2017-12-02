@@ -37,7 +37,7 @@
       <div class="col-md-8 col-sm-8 text-left">
             <div class="catalog">
              <!-- <a href="#ilusModal" data-toggle="modal" data-target="#ilusModal">"ILUSTRACION BELLA Y HERMOSA" <br> CLICKEAME PUES! </a>-->
-            <div class="row catalogo">
+            <div class="row catalogo row-centered">
               
             </div>
             </div>

@@ -1,4 +1,5 @@
 <?php
+  $index = true;
   include_once("config.php");
  ?>
 <!DOCTYPE html>
